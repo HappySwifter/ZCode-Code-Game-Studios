@@ -11,7 +11,7 @@
 
 - [ ] `description:` field is present and domain-specific (references world lore, factions, history, world rules, ecology)
 - [ ] `tools:` reads Read, Glob, Grep, Write, Edit and `disallowedTools:` lists Bash — document authoring only, no shell or code execution
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.zcode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over dialogue writing, mechanic design, or narrative arc structure
 
 ---

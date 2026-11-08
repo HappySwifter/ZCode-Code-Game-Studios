@@ -11,7 +11,7 @@ No gate IDs assigned.
 
 - [ ] `description:` field is present and domain-specific (references multiplayer / replication / networking)
 - [ ] `tools:` list includes Read, Write, Edit, Bash, Glob, Grep
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.zcode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over gameplay logic or server deployment infrastructure
 
 ---

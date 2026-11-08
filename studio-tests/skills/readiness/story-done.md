@@ -15,7 +15,7 @@ decides the QA coverage gate (QL-TEST-COVERAGE) and the code review step
 `solo`). It produces a COMPLETE / COMPLETE WITH NOTES / NOT ASSESSED / BLOCKED
 verdict and, only after an `AskUserQuestion` choice, updates the story file,
 optionally appends to `docs/tech-debt-register.md`, and surfaces the next story —
-with no sprint plan, from `bash .claude/scripts/story-status.sh`, the list `/help`
+with no sprint plan, from `bash .zcode/scripts/story-status.sh`, the list `/help`
 and `/sprint-status` read, run after the story file is written. It says what a
 screenshot shows only after opening it, and asks about behaviour criteria rather
 than reading them off the code.
@@ -38,7 +38,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -254,7 +254,7 @@ Fixture defaults.
 3. Phase 4 runs the manifest, hardcoded-value and scope checks only (no GDD/ADR
    traceability at `minimal`); Phase 5 notes "LP-CODE-REVIEW skipped — Solo mode."
 4. Verdict COMPLETE; after the Phase 7 approval the story is marked Complete
-5. Phase 8 takes the no-sprint branch: it runs `bash .claude/scripts/story-status.sh`
+5. Phase 8 takes the no-sprint branch: it runs `bash .zcode/scripts/story-status.sh`
    after the story file is written; `story-003` is on its first `TODO` line →
    "Run `/dev-story [path]`"
 
@@ -262,7 +262,7 @@ Fixture defaults.
 - [ ] The UI screenshot check runs at `qa.level: minimal` and is satisfied by the retained image alone — no evidence doc or sign-off is required for a UI story
 - [ ] Verdict is COMPLETE, not BLOCKED for a missing sign-off
 - [ ] Phase 8 names `story-003` and recommends `/dev-story` directly — no `/story-readiness` line at `minimal`, and no Sprint Close-Out Sequence
-- [ ] The next story comes from `bash .claude/scripts/story-status.sh`, run after this story's `Status: Complete` is written — not from a grep of one epic folder
+- [ ] The next story comes from `bash .zcode/scripts/story-status.sh`, run after this story's `Status: Complete` is written — not from a grep of one epic folder
 - [ ] Variant — `production/epics/combat/story-001-arena.md` reads `**Status:** In Review`: it is Next Up (the script lists `IN_REVIEW` first, across every epic folder), and the Next Up line recommends `/story-done [path]` to close it, not `/dev-story`
 - [ ] Variant — no image under `production/qa/evidence/` and no `Run result:` line: the UI gate is still BLOCKING at `qa.level: minimal`, so the verdict is BLOCKED
 - [ ] Variant — `story-003` is `Blocked`, naming its blocker, and no other story is unfinished: Phase 8 prints no Next Up, names `story-003` with its blocker, suggests clearing it, and never says the build order is done

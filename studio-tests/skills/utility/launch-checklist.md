@@ -12,7 +12,7 @@ Certification section is emitted **only** for the `cert_tier` value
 licence to emit every track; if it cannot be determined the section is marked
 `NOT ASSESSED — cert tier unknown`.
 
-Phase 2 reads `CLAUDE.md`, the latest milestone, any existing checklist in
+Phase 2 reads `AGENTS.md`, the latest milestone, any existing checklist in
 `production/releases/` and the content calendar. Phase 3 scans the code root for
 TODO/FIXME/HACK, debug output, placeholder assets and hardcoded dev values, and
 reports every scan with its denominator (`scanned [N] files, [M] hits`) or
@@ -64,7 +64,7 @@ Producer, Release Manager) is checklist text for humans, coordinated later via
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

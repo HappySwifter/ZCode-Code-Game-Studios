@@ -4,5 +4,5 @@
 # Local config only. Never list secrets (.env, keys, credentials): a worktree
 # copy is one more place for them to leak from.
 project.local.yaml
-CLAUDE.local.md
-.claude/settings.local.json
+AGENTS.local.md
+.zcode/config.local.json

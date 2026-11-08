@@ -28,7 +28,7 @@ summary report with verdict COMPLETE / BLOCKED and handoffs to `/design-review`,
 - [ ] Names a destination per agent under `production/levels/[level-name]/` — `narrative.md`, `lore.md`, `visual-direction.md`, `layout.md`, `systems.md`, `production-concepts.md`, `accessibility.md` — and qa-tester's at `production/qa/test-cases/[level-name]-cases.md`
 - [ ] Defines a phase gate as a decision point the pipeline itself lists, whatever the `automation` mode, and claims no director spawn at phase gates
 - [ ] Has a next-step handoff at the end (references `/design-review`, `/dev-story`, `/qa-plan`)
-- [ ] Error Recovery Protocol section is present: verify a named artifact is on disk before treating a step as done, surface BLOCKED immediately, always produce a partial report, full procedure (surface → assess → options → partial report) in `.claude/docs/error-recovery-protocol.md`
+- [ ] Error Recovery Protocol section is present: verify a named artifact is on disk before treating a step as done, surface BLOCKED immediately, always produce a partial report, full procedure (surface → assess → options → partial report) in `.zcode/docs/error-recovery-protocol.md`
 - [ ] Uses `AskUserQuestion` at step transitions for user approval before proceeding (`collaborative` mode)
 - [ ] Phase 0 resolves `team.size`, and the skill requires a one-line active-set announcement before Step 1
 - [ ] Step 1 explicitly spawns narrative-director, world-builder and art-director in parallel
@@ -44,7 +44,7 @@ summary report with verdict COMPLETE / BLOCKED and handoffs to `/design-review`,
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -117,7 +117,7 @@ Fixture defaults.
 - [ ] Partial report produced — narrative-director's and art-director's completed work is not discarded
 - [ ] The missing world-building context is named as a gap in the final report
 - [ ] Overall verdict is BLOCKED (not COMPLETE) when world-builder remains unresolved
-- [ ] Nothing is written in world-builder's place — the protocol's option is "skip this agent and note the gap" (`.claude/docs/error-recovery-protocol.md`), not substitute lore
+- [ ] Nothing is written in world-builder's place — the protocol's option is "skip this agent and note the gap" (`.zcode/docs/error-recovery-protocol.md`), not substitute lore
 
 ---
 

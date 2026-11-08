@@ -369,7 +369,7 @@ pattern:
   the tool: end with the options as a short labeled list and let the caller ask
 
 A question that comes back skipped, dismissed or empty is not an answer. Act on
-nothing; ask again in plain text and wait (`.claude/docs/automation-modes.md`).
+nothing; ask again in plain text and wait (`.zcode/docs/automation-modes.md`).
 
 ### Format Guidelines
 

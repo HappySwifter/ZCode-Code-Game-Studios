@@ -49,7 +49,7 @@ required as part of the scan itself.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -159,7 +159,7 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] Skill outputs the empty-registry message naming `/design-system`
-- [ ] Verdict is NOT ASSESSED, naming the empty registry as the reason — never PASS, CONFLICTS FOUND, COMPLETE or BLOCKED, and never no verdict at all (`.claude/rules/skill-authoring.md` obligation 1)
+- [ ] Verdict is NOT ASSESSED, naming the empty registry as the reason — never PASS, CONFLICTS FOUND, COMPLETE or BLOCKED, and never no verdict at all (`.zcode/rules/skill-authoring.md` obligation 1)
 - [ ] No file is written, including `production/session-state/active.md`
 - [ ] Skill does NOT crash or produce a partial report
 

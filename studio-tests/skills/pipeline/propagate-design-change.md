@@ -39,7 +39,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 ## Director Gate Checks
 
 One gate: **TD-CHANGE-IMPACT** (`technical-director`,
-`.claude/docs/director-gates/td-change-impact.md`), spawned after the Design
+`.zcode/docs/director-gates/td-change-impact.md`), spawned after the Design
 Change Impact Report is presented and before the per-ADR resolution workflow.
 
 - `full` → spawned with the full impact report (change summary, classifications,
@@ -60,7 +60,7 @@ and the Verdict line.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

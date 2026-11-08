@@ -28,13 +28,13 @@ handoffs to `/ux-review`, `/code-review`, `/team-polish`.
 - [ ] Names a destination per agent under `production/ui/[feature-name]/`: `visual-design.md` (art-director, Phase 2), `engine-notes.md` (engine UI specialist), `review-[agent].md` (each Phase 4 reviewer, one file each)
 - [ ] Defines a phase gate as a decision point the pipeline itself lists, whatever the `automation` mode, and claims no director spawn at phase gates
 - [ ] Has a next-step handoff at the end (references `/ux-review`, `/code-review`, `/team-polish`)
-- [ ] Error Recovery Protocol section is present: verify a named artifact is on disk, surface BLOCKED immediately, always produce a partial report, full procedure (surface → assess → options → partial report) in `.claude/docs/error-recovery-protocol.md`
+- [ ] Error Recovery Protocol section is present: verify a named artifact is on disk, surface BLOCKED immediately, always produce a partial report, full procedure (surface → assess → options → partial report) in `.zcode/docs/error-recovery-protocol.md`
 - [ ] Uses `AskUserQuestion` at phase transitions for user approval before proceeding (`collaborative` mode)
 - [ ] Phase 0 resolves `team.size`, and the skill requires a one-line active-set announcement before any spawn
 - [ ] Phase 4 is explicitly marked as parallel (ux-designer, art-director, accessibility-specialist)
 - [ ] UX Review Gate (Phase 1c) is defined as a blocking gate — skill must not proceed to Phase 2 without APPROVED verdict, except by an explicit user override of NEEDS REVISION or NOT ASSESSED, which the final report records
 - [ ] Team Composition lists all five roles (ux-designer, ui-programmer, art-director, engine UI specialist, accessibility-specialist)
-- [ ] Engine UI specialist is read from `specialists.ui` in `project.yaml` (falling back to `.claude/docs/technical-preferences.md`), and `specialists.ui: null` is treated as unset
+- [ ] Engine UI specialist is read from `specialists.ui` in `project.yaml` (falling back to `.zcode/docs/technical-preferences.md`), and `specialists.ui: null` is treated as unset
 - [ ] References the interaction pattern library (`design/ux/interaction-patterns.md`) — ui-programmer must use existing patterns
 - [ ] Phase 1a reads `design/accessibility-requirements.md` before design begins
 
@@ -44,7 +44,7 @@ handoffs to `/ux-review`, `/code-review`, `/team-polish`.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

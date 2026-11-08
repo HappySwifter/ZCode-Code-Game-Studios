@@ -51,7 +51,7 @@ tool and invokes no director gate.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -61,7 +61,7 @@ Fixture defaults.
 ### Case 1: Happy Path — Complete UX spec, APPROVED
 
 **Fixture:**
-- `design/ux/inventory.md` follows `.claude/docs/templates/ux-spec.md`: header with Status, Author, Platform Target (PC, Console), Related GDDs (`design/gdd/inventory.md`), Accessibility Tier and `> **Template**: UX Spec`; every section populated, including States & Variants (loading, empty, populated, error), keyboard and d-pad navigation with focus order, an Input Method Completeness Checklist block for keyboard/mouse and for gamepad with every item ticked, and at least 5 testable acceptance criteria
+- `design/ux/inventory.md` follows `.zcode/docs/templates/ux-spec.md`: header with Status, Author, Platform Target (PC, Console), Related GDDs (`design/gdd/inventory.md`), Accessibility Tier and `> **Template**: UX Spec`; every section populated, including States & Variants (loading, empty, populated, error), keyboard and d-pad navigation with focus order, an Input Method Completeness Checklist block for keyboard/mouse and for gamepad with every item ticked, and at least 5 testable acceptance criteria
 - `design/accessibility-requirements.md` commits the Standard tier
 - `design/ux/interaction-patterns.md` exists, and every interactive component in the spec names a pattern from it
 - `project.yaml` `platform` block: `targets: [PC, Console]`, `gamepad_support: Full`
@@ -161,7 +161,7 @@ Fixture defaults.
 ### Case 5: `all` Argument and No Director Gate
 
 **Fixture:**
-- `design/ux/` contains `hud.md` (written by `/ux-design hud`, header line `> **Template**: HUD Design`), `inventory.md` (written by `/ux-design inventory`, `> **Template**: UX Spec`) and `pause-menu.md` (hand-written from `.claude/docs/templates/ux-spec.md`, with no Template line)
+- `design/ux/` contains `hud.md` (written by `/ux-design hud`, header line `> **Template**: HUD Design`), `inventory.md` (written by `/ux-design inventory`, `> **Template**: UX Spec`) and `pause-menu.md` (hand-written from `.zcode/docs/templates/ux-spec.md`, with no Template line)
 - `project.yaml` has `modes.review_mode: full`
 
 **Input:** `/ux-review all`
@@ -201,5 +201,5 @@ Fixture defaults.
 - The pattern library checklist (Phase 3C, `patterns` argument) is not
   fixture-tested.
 - The no-argument prompt ("which spec to validate") is not tested.
-- The fallback to `.claude/docs/technical-preferences.md`, and then to the spec
+- The fallback to `.zcode/docs/technical-preferences.md`, and then to the spec
   header, when `project.yaml` has no `platform` block is not tested.

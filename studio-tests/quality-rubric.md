@@ -178,10 +178,10 @@ gates, the gate mode logic must also be correct.
 ## Agent Categories
 
 Used by `/skill-test category [agent-name]` to evaluate an agent definition in
-`.claude/agents/` against its category's metrics.
+`.zcode/agents/` against its category's metrics.
 
 No category fixes a model. Each agent's tier is its own frontmatter `model:`,
-and its spec in `agents/` asserts that alias; see `.claude/docs/model-tiers.md`.
+and its spec in `agents/` asserts that alias; see `.zcode/docs/model-tiers.md`.
 
 ### `director`
 

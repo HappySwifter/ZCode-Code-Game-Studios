@@ -57,7 +57,7 @@ step at `standard`/`full`.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -328,7 +328,7 @@ The `full` column of the file-check table has its own STOP rule, so the
 3. Verification runs `commands.smoke` and reports its exit code
 4. Before launching, globs `Assets/**/ScreenshotOnArg.cs`, finds none and asks
    "May I write `Assets/Scripts/ScreenshotOnArg.cs`?"; on yes writes the script
-   verbatim from `.claude/docs/run-and-observe.md`
+   verbatim from `.zcode/docs/run-and-observe.md`
 5. Launches the built player with `--scene`/`--screenshot` and prints
    `Run result: OBSERVED — …` with the retained path
 
@@ -344,7 +344,7 @@ The `full` column of the file-check table has its own STOP rule, so the
 ### Case 7: Engine unset — the code root is unresolved, nothing is written
 
 **Fixture:**
-- `project.yaml` has no `engine` block; `.claude/docs/technical-preferences.md`
+- `project.yaml` has no `engine` block; `.zcode/docs/technical-preferences.md`
   reads `Engine: [TO BE CONFIGURED]`
 - The project has none of `src/`, `Assets/` or `Source/`
 - `modes.workflow: minimal`; the story is Type Logic
@@ -352,7 +352,7 @@ The `full` column of the file-check table has its own STOP rule, so the
 **Input:** `/dev-story production/epics/[slug]/story-001-[slug].md`
 
 **Expected behavior:**
-1. The code root cannot be resolved (`.claude/docs/code-root-resolution.md`: no
+1. The code root cannot be resolved (`.zcode/docs/code-root-resolution.md`: no
    `engine.name`, no legacy `Engine:` value, no single unambiguous root in the tree)
 2. No source file is written, and the output says the code root is unresolved
 

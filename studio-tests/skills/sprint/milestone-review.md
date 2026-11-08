@@ -42,7 +42,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 | PR-MILESTONE  | Before the Go/No-Go recommendation is generated | full only (not lean/solo) |
 
 PR-MILESTONE verdicts: ON TRACK / AT RISK / OFF TRACK — or NOT ASSESSED
-[missing input] (`.claude/docs/director-gates.md`), on which the skill never
+[missing input] (`.zcode/docs/director-gates.md`), on which the skill never
 recommends GO.
 
 ---
@@ -51,7 +51,7 @@ recommends GO.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -180,7 +180,7 @@ Fixture defaults.
    `NOT ASSESSED — NO DATA` as the whole verdict
 3. The report names what was missing and where it comes from: sprint reports
    are written by `/sprint-plan`; milestone definitions are authored by hand
-   from `.claude/docs/templates/milestone-definition.md`
+   from `.zcode/docs/templates/milestone-definition.md`
 4. No milestone definition is fabricated, no gate is spawned, no file is written
 
 **Assertions:**

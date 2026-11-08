@@ -42,7 +42,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 | PR-SPRINT | After the draft is presented, before write approval | full only (not lean/solo) |
 
 PR-SPRINT verdicts: REALISTIC / CONCERNS / UNREALISTIC — or NOT ASSESSED
-[missing input] (`.claude/docs/director-gates.md`), which is never treated as
+[missing input] (`.zcode/docs/director-gates.md`), which is never treated as
 REALISTIC.
 
 ---
@@ -51,7 +51,7 @@ REALISTIC.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

@@ -33,7 +33,7 @@ Skips the engine specialist when no engine is configured and records
 - [ ] The compiled audio design document is written by the orchestrator only after it asks via `AskUserQuestion` "May I write the audio design to `design/audio/audio-[feature].md`?" (`design/` is outside the bounded exception)
 - [ ] Every agent prompt ends with the return contract: path written, ≤5-bullet summary, BLOCKED/CONCERNS items one line each
 - [ ] Has a next-step handoff at the end (references `/dev-story`, `/asset-audit`)
-- [ ] Error Recovery Protocol section is present: verify a named artifact is on disk before treating a step as done, surface BLOCKED immediately, always produce a partial report, full procedure in `.claude/docs/error-recovery-protocol.md`
+- [ ] Error Recovery Protocol section is present: verify a named artifact is on disk before treating a step as done, surface BLOCKED immediately, always produce a partial report, full procedure in `.zcode/docs/error-recovery-protocol.md`
 - [ ] `AskUserQuestion` is used at step transitions before proceeding (`collaborative` mode)
 - [ ] Phase 0 resolves `review_mode`, `automation` and `team.size`, and requires a one-line active-set announcement before Step 1
 - [ ] Step 2 explicitly spawns sound-designer and accessibility-specialist in parallel, and How to Delegate lists `accessibility-specialist`
@@ -48,7 +48,7 @@ Skips the engine specialist when no engine is configured and records
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -166,14 +166,14 @@ Fixture defaults.
 2. Sound bible is not found; orchestrator notes the gap in one line: "No sound bible at `design/audio/sound-bible.md`; audio direction starts from the GDDs alone"
 3. Pipeline proceeds normally through all four steps without the sound bible as input
 4. audio-director in Step 1 is informed that no sound bible exists and must establish sonic identity from the feature GDD alone
-5. Next Steps recommends creating the sound bible and says who writes it: the `audio-director` agent drafts `design/audio/sound-bible.md` from `.claude/docs/templates/sound-bible.md`, starting from this run's Step 1 direction, and asks before writing
+5. Next Steps recommends creating the sound bible and says who writes it: the `audio-director` agent drafts `design/audio/sound-bible.md` from `.zcode/docs/templates/sound-bible.md`, starting from this run's Step 1 direction, and asks before writing
 
 **Assertions:**
 - [ ] Orchestrator checks for the sound bible during context gathering (before Step 1)
 - [ ] Missing sound bible is noted explicitly in conversation — not silently ignored
 - [ ] Pipeline does NOT halt due to the missing sound bible
 - [ ] audio-director is notified that no sound bible exists in its prompt context
-- [ ] Next Steps recommends creating a sound bible and names its author — the `audio-director`, drafting from `.claude/docs/templates/sound-bible.md`
+- [ ] Next Steps recommends creating a sound bible and names its author — the `audio-director`, drafting from `.zcode/docs/templates/sound-bible.md`
 - [ ] The skill does not write `design/audio/sound-bible.md` itself in this run
 - [ ] Verdict is still COMPLETE if all other steps succeed
 
@@ -183,7 +183,7 @@ Fixture defaults.
 
 **Fixture:**
 - Resolved config block: `team.size: studio`, `automation: collaborative`
-- `engine.name` is unset in `project.yaml`, and `.claude/docs/technical-preferences.md` has no Primary engine specialist (shows `[TO BE CONFIGURED]`)
+- `engine.name` is unset in `project.yaml`, and `.zcode/docs/technical-preferences.md` has no Primary engine specialist (shows `[TO BE CONFIGURED]`)
 - GDD for the target feature exists
 - Sound bible may or may not exist
 

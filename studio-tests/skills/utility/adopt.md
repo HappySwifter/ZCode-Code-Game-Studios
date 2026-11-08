@@ -17,7 +17,7 @@ infrastructure bootstrap (`/architecture-review`, `/create-control-manifest`,
 GDD and ADR audits therefore set `modes.rigor: full` in `project.yaml`.
 
 A v1.0 project (no `project.yaml`, legacy config with real values) is migrated
-only by `.claude/scripts/migrate-v1-config.sh` — `--dry-run` first, the real run
+only by `.zcode/scripts/migrate-v1-config.sh` — `--dry-run` first, the real run
 after an ask naming the files it writes, and `--finalize` left until the user
 has read the migration report. `/adopt` never writes a review mode; it reports
 the resolved one.
@@ -51,7 +51,7 @@ None. `/adopt` is a brownfield audit utility. No director gates apply.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -239,7 +239,7 @@ Fixture defaults.
 
 **Fixture:**
 - No `project.yaml` at the repo root
-- `production/stage.txt` reads `Production`; `.claude/docs/technical-preferences.md`
+- `production/stage.txt` reads `Production`; `.zcode/docs/technical-preferences.md`
   has `- **Engine**: Godot 4.6` and a filled naming section
 - `design/gdd/` holds GDDs; no `production/migration-report.md`
 
@@ -248,7 +248,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Phase 2g identifies a v1.0 project needing migration (no `project.yaml`,
    legacy files with real, migratable values)
-2. It runs `bash .claude/scripts/migrate-v1-config.sh --dry-run` during the
+2. It runs `bash .zcode/scripts/migrate-v1-config.sh --dry-run` during the
    audit (the dry run writes nothing) — it does not hand-write `project.yaml`
 3. The migration is classified BLOCKING in Phase 3 and heads the plan, which
    reports what the dry run listed
@@ -256,7 +256,7 @@ Fixture defaults.
    converter? It writes `project.yaml` and `production/migration-report.md`."
    and runs it without `--dry-run` only after approval
 5. It tells the user to read `production/migration-report.md` before running
-   `bash .claude/scripts/migrate-v1-config.sh --finalize`, and does not run
+   `bash .zcode/scripts/migrate-v1-config.sh --finalize`, and does not run
    `--finalize` itself before the user has read the report
 
 **Assertions:**

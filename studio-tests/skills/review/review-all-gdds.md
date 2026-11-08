@@ -17,7 +17,7 @@ systems-index "Needs Revision" statuses only after the user approves.
 Each phase is a `references/N-*.md` file the skill reads before doing that phase and
 again if the conversation is compacted during it. The argument picks the focus:
 `full` (default), `consistency`, `design-theory`, or `since-last-review`, which
-takes its scope from `.claude/scripts/review-scope.sh`.
+takes its scope from `.zcode/scripts/review-scope.sh`.
 
 It is invoked after individual GDDs are approved and before architecture work.
 It spawns no director gate agents. At `workflow: minimal` it does not apply (no
@@ -50,7 +50,7 @@ review mode. It IS the holistic review; its only agents are the two
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -267,19 +267,19 @@ Fixture defaults.
 - `design/gdd/` holds `game-pillars.md`, `systems-index.md`, a committed `gdd-cross-review-2025-01-15.md`, and four system GDDs: `combat.md`, `inventory.md`, `crafting.md`, `status-effects.md`
 - Only `combat.md` has been modified since that report was committed; its `## Dependencies` section names `inventory.md`
 - `crafting.md` and `status-effects.md` are unchanged and no changed GDD names them
-- `.claude/scripts/review-scope.sh` prints `PRIOR_REVIEW: design/gdd/gdd-cross-review-2025-01-15.md`, `CHANGED:` with `design/gdd/combat.md`, and a `DEPS` line `combat.md -> inventory.md`
+- `.zcode/scripts/review-scope.sh` prints `PRIOR_REVIEW: design/gdd/gdd-cross-review-2025-01-15.md`, `CHANGED:` with `design/gdd/combat.md`, and a `DEPS` line `combat.md -> inventory.md`
 
 **Input:** `/review-all-gdds since-last-review`
 
 **Expected behavior:**
-1. After the manifest, the run executes `bash .claude/scripts/review-scope.sh` rather than working out the changed set from `git log` or `git diff` itself
+1. After the manifest, the run executes `bash .zcode/scripts/review-scope.sh` rather than working out the changed set from `git log` or `git diff` itself
 2. Scope is the `CHANGED` set plus the GDDs named on the `DEPS` lines: `combat.md` and `inventory.md`; the run shows the user which GDDs are in scope before any full read
 3. Only those two GDDs get the Phase 1c section load; `crafting.md` and `status-effects.md` are not loaded, and no second dependency-expansion pass is made
 4. The report states `GDDs reviewed: 2 of 4 present`
 5. Phases 2 and 3 run over the two in-scope GDDs as usual
 
 **Assertions:**
-- [ ] `bash .claude/scripts/review-scope.sh` is run, and its `CHANGED` and `DEPS` lists are used as the scope as printed
+- [ ] `bash .zcode/scripts/review-scope.sh` is run, and its `CHANGED` and `DEPS` lists are used as the scope as printed
 - [ ] The run does not derive the changed set with its own git history search
 - [ ] `inventory.md` is in scope although it did not change, because `combat.md` declares it as a dependency
 - [ ] The unchanged, undeclared GDDs are not loaded and are not counted as reviewed: the report says `GDDs reviewed: 2 of 4 present`

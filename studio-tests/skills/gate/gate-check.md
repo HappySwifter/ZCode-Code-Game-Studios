@@ -4,9 +4,9 @@
 
 `/gate-check` validates whether the project is ready to advance to the next
 development phase. It resolves artifact existence with
-`.claude/scripts/artifact-check.sh`, spot-reads the artifacts the verdict turns
+`.zcode/scripts/artifact-check.sh`, spot-reads the artifacts the verdict turns
 on, runs the target gate's quality checks (loaded from one file under
-`.claude/skills/gate-check/references/`), asks the user about unverifiable
+`.zcode/skills/gate-check/references/`), asks the user about unverifiable
 items, runs a director panel whose existence is set by `review_mode` and whose
 width is set by `workflow`, and produces a PASS / CONCERNS / NOT ASSESSED / FAIL
 verdict. On PASS with user confirmation it writes the new stage to
@@ -36,7 +36,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -59,8 +59,8 @@ Fixture defaults.
 **Input:** `/gate-check systems-design`
 
 **Expected behavior:**
-1. Skill loads only `.claude/skills/gate-check/references/gate-systems-design.md`
-2. Skill runs `bash .claude/scripts/artifact-check.sh --phase concept` to resolve
+1. Skill loads only `.zcode/skills/gate-check/references/gate-systems-design.md`
+2. Skill runs `bash .zcode/scripts/artifact-check.sh --phase concept` to resolve
    existence, then spot-reads `design/gdd/game-concept.md` to confirm it has real
    content (not a template skeleton)
 3. Skill checks pillars, the Visual Identity Anchor, core loop and target audience

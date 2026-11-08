@@ -53,7 +53,7 @@ Review mode comes from the resolved `review_mode` (`modes.review_mode` in
 In `full` mode: after `docs/architecture/architecture.md` is written, TD-ARCHITECTURE
 (`technical-director`) and LP-FEASIBILITY (`lead-programmer`) review it. Each is
 a spawned agent that reads its own gate file
-(`.claude/docs/director-gates/td-architecture.md`, `lp-feasibility.md`); their
+(`.zcode/docs/director-gates/td-architecture.md`, `lp-feasibility.md`); their
 inputs are independent, so they spawn together and both verdicts are collected
 before Step 3 presents them. The parent never reads those files: it passes
 TD-ARCHITECTURE the document path, the Technical Requirements Baseline (TR-IDs
@@ -71,7 +71,7 @@ skipped — Solo mode."
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

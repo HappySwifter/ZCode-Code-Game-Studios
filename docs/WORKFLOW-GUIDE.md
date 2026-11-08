@@ -1,16 +1,16 @@
-# Claude Code Game Studios -- Complete Workflow Guide
+# ZCode Game Studios -- Complete Workflow Guide
 
 > **How to go from zero to a shipped game using the Agent Architecture.**
 >
 > This guide walks you through every phase of game development using the
 > 49-agent system, 74 slash commands, and 15 automated hooks. It assumes you
-> have Claude Code installed and are working from the project root.
+> have ZCode installed and are working from the project root.
 >
 > The pipeline has 7 phases. At `rigor: standard` and `full`, each phase has
 > a formal gate (`/gate-check`) that must pass before you advance. At
 > `rigor: minimal` -- the default -- nothing requires a gate; see
 > [The Default Path](#the-default-path-rigor-minimal). The authoritative
-> phase sequence is defined in `.claude/docs/workflow-catalog.yaml` and read
+> phase sequence is defined in `.zcode/docs/workflow-catalog.yaml` and read
 > by `/help`.
 
 ---
@@ -39,7 +39,7 @@
 
 Before you start, make sure you have:
 
-- **Claude Code** installed and working
+- **ZCode** installed and working
 - **Git** with Git Bash (Windows) or standard terminal (Mac/Linux)
 - **jq** (optional but recommended -- hooks fall back to `grep` if missing)
 - **Python 3** (required -- every skill and hook reads `project.yaml` through it; without it every setting silently falls back to its default)
@@ -71,18 +71,18 @@ This guided onboarding asks where you are and routes you to the right phase:
 
 ### Step 3: Verify Hooks Are Working
 
-Start a new Claude Code session. You should see output from the
+Start a new ZCode session. You should see output from the
 `session-start.sh` hook:
 
 ```
-=== Claude Code Game Studios -- Session Context ===
+=== ZCode Game Studios -- Session Context ===
 Branch: main
 Recent commits:
   abc1234 Initial commit
 ===================================
 ```
 
-If you see this, hooks are working. If not, check `.claude/settings.json` to
+If you see this, hooks are working. If not, check `.zcode/config.json` to
 make sure the hook paths are correct for your OS.
 
 ### Step 4: Ask for Help Anytime
@@ -268,7 +268,7 @@ Or with a specific engine:
 
 - Writes engine, language, specialists, naming conventions, and performance
   budgets to `project.yaml` (the source of truth) and mirrors them to
-  `.claude/docs/technical-preferences.md` (the human-readable legacy fallback)
+  `.zcode/docs/technical-preferences.md` (the human-readable legacy fallback)
 - Detects knowledge gaps (engine version newer than LLM training data) and
   advises cross-referencing `docs/engine-reference/`
 - Creates version-pinned reference docs in `docs/engine-reference/`
@@ -322,7 +322,7 @@ game has visual-asset stories; at `minimal` it is optional.
 - Recommended: a concept prototype whose REPORT.md says PROCEED
 
 This is the `full` list. `standard` and `minimal` drop items; the gate's own
-file, `.claude/skills/gate-check/references/gate-systems-design.md`, has the full
+file, `.zcode/skills/gate-check/references/gate-systems-design.md`, has the full
 checklist and what each tier drops.
 
 **Verdict:** PASS / CONCERNS / NOT ASSESSED / FAIL. PASS advances the stage.
@@ -485,7 +485,7 @@ If your game has story, lore, or dialogue, this is when you build it:
   and not NOT ASSESSED, which means the GDDs could not be compared
 
 This is the `full` list. `standard` and `minimal` drop items; the gate's own
-file, `.claude/skills/gate-check/references/gate-technical-setup.md`, has the full
+file, `.zcode/skills/gate-check/references/gate-technical-setup.md`, has the full
 checklist and what each tier drops.
 
 ---
@@ -632,7 +632,7 @@ there are systems to test.
   (`/ux-design accessibility`, `/ux-design patterns`)
 
 This is the `full` list. `standard` and `minimal` drop items; the gate's own
-file, `.claude/skills/gate-check/references/gate-pre-production.md`, has the full
+file, `.zcode/skills/gate-check/references/gate-pre-production.md`, has the full
 checklist and what each tier drops.
 
 ---
@@ -828,7 +828,7 @@ runs end to end.
   built but not yet played → NOT ASSESSED
 
 This is the `full` list. `standard` and `minimal` drop items; the gate's own
-file, `.claude/skills/gate-check/references/gate-production.md`, has the full
+file, `.zcode/skills/gate-check/references/gate-production.md`, has the full
 checklist and what each tier drops.
 
 ---
@@ -1016,7 +1016,7 @@ recommendation.
 - No open S1 Critical bugs, and performance within budget
 
 This is the `full` list. `standard` and `minimal` drop items; the gate's own
-file, `.claude/skills/gate-check/references/gate-polish.md`, has the full
+file, `.zcode/skills/gate-check/references/gate-polish.md`, has the full
 checklist and what each tier drops.
 
 ---
@@ -1199,7 +1199,7 @@ now; `/team-release` publishes them once the release is a GO.
   HIGH finding, and a `/localize qa` pass for every locale you ship
 
 This is the `full` list. `standard` and `minimal` drop items; the gate's own
-file, `.claude/skills/gate-check/references/gate-release.md`, has the full
+file, `.zcode/skills/gate-check/references/gate-release.md`, has the full
 checklist and what each tier drops.
 
 ---
@@ -1295,7 +1295,7 @@ Bypasses normal sprint processes with a full audit trail:
 
 ```
 Ask Claude to create a post-mortem using the template at
-.claude/docs/templates/post-mortem.md
+.zcode/docs/templates/post-mortem.md
 ```
 
 ---
@@ -1332,7 +1332,7 @@ set wins: the flag, `project.local.yaml`, `project.yaml`, a legacy
 `production/review-mode.txt`, then the rigor default. A `review-mode.txt` left
 from an older version still overrides rigor — delete it if the mode surprises you.
 
-Full gate definitions and check pattern: `.claude/docs/director-gates.md`
+Full gate definitions and check pattern: `.zcode/docs/director-gates.md`
 
 ---
 
@@ -1413,7 +1413,7 @@ The system has 15 hooks that run automatically:
 | `validate-write.sh` | Before a file write | Warns when a write would break a rule the skills state (never blocks) |
 | `validate-registry.sh` | Before an entity or TR-ID registry write | Warns when an entry would be deleted or renumbered, or a status is not in the header's list |
 | `validate-assets.sh` | After a file write | Checks data-file JSON, and asset naming in Godot's `assets/` |
-| `validate-skill-change.sh` | Skill file written | Advises running `/skill-test` after `.claude/skills/` changes |
+| `validate-skill-change.sh` | Skill file written | Advises running `/skill-test` after `.zcode/skills/` changes |
 | `log-agent.sh` | Agent start | Logs agent invocations for audit trail |
 | `log-agent-stop.sh` | Agent stop | Completes agent audit trail (start + stop) |
 | `validate-agent-artifact.sh` | Agent stop | Warns when a subagent stops without writing the file its brief named |

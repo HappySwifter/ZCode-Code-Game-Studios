@@ -37,7 +37,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 ## Director Gate Checks
 
 One gate: **TD-MANIFEST** (`technical-director`,
-`.claude/docs/director-gates/td-manifest.md`), spawned after the user accepts the
+`.zcode/docs/director-gates/td-manifest.md`), spawned after the user accepts the
 Phase 4 rule summary and before the Phase 5 write ask.
 
 - `full` → spawned; receives the Control Manifest Preview, the ADRs covered, the
@@ -58,7 +58,7 @@ then supplied and the gate re-run, or the run goes on with
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

@@ -30,7 +30,7 @@ Closes with a post-release monitoring plan.
 - [ ] File Write Protocol distinguishes sub-agents (bounded exception: named path, new artifact under `production/`, `docs/` or `tests/`, gated phase — no per-write prompt) from sub-skills (normal protocol — they ask before writing), and requires explicit confirmation for tags, pushes, builds and storefront changes
 - [ ] File Write Protocol section states that the orchestrator does not write files directly
 - [ ] Names a destination per agent, so no two parallel agents share a file: `production/releases/release-plan-[version].md`, `release-checklist-[version].md`, `qa-gate-[version].md`, `build-[version].md`, `security-signoff-[version].md`, `netcode-signoff-[version].md`, `localization-signoff-[version].md`, `performance-signoff-[version].md`, `analytics-signoff-[version].md`, `go-no-go-[version].md`, `announcement-[version].md`, `release-report-[version].md`, and `docs/patch-notes/[version].md`
-- [ ] Error Recovery Protocol section is present: verify a named artifact is on disk, surface BLOCKED immediately, always produce a partial report, full procedure (surface / assess / offer options / partial report) in `.claude/docs/error-recovery-protocol.md`
+- [ ] Error Recovery Protocol section is present: verify a named artifact is on disk, surface BLOCKED immediately, always produce a partial report, full procedure (surface / assess / offer options / partial report) in `.zcode/docs/error-recovery-protocol.md`
 - [ ] Phase 0 resolves `project.stage`, and a stage check before Phase 1 stops when it is not `Release` ("run `/gate-check release` first"), spawning nothing; the only way past it is an explicit `AskUserQuestion` override, asked in every `automation` mode and recorded as a `Stage override:` line in the go/no-go record and the final report
 - [ ] Has a next-step handoff referencing post-release monitoring and `/retrospective`; the skill does not write `project.stage` or `production/stage.txt` itself
 - [ ] qa-lead checks open bugs at the release gate's thresholds for the resolved `workflow`: S1 at every tier, S2 and S3 too at `full`
@@ -49,7 +49,7 @@ Closes with a post-release monitoring plan.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---

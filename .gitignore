@@ -9,9 +9,9 @@
 Thumbs.db
 Desktop.ini
 
-# === Claude Code Local ===
-.claude/settings.local.json
-CLAUDE.local.md
+# === ZCode Local ===
+.zcode/config.local.json
+AGENTS.local.md
 project.local.yaml
 production/session-logs/
 # Ephemeral per-session checkpoint. directory-structure.md documents this as
@@ -19,11 +19,11 @@ production/session-logs/
 production/session-state/
 .scratch/
 # Per-agent working memory written at runtime — not release material
-.claude/agent-memory/
-# Worktrees from the prototyper, isolated subagents and `claude --worktree`.
+.zcode/agent-memory/
+# Worktrees from the prototyper, isolated subagents and ZCode worktrees.
 # Each is a separate checkout; staging everything would add it as an embedded
 # repository.
-.claude/worktrees/
+.zcode/worktrees/
 
 
 # === Local sandboxes and scratch work ===

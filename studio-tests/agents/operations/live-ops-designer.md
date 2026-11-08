@@ -11,7 +11,7 @@
 
 - [ ] `description:` field is present and domain-specific (references live ops, seasonal events, battle pass, retention)
 - [ ] `tools:` reads `Read, Glob, Grep, Write, Edit` and `disallowedTools:` names `Bash` — design documents only, no shell, code or analytics tooling
-- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.claude/docs/model-tiers.md`)
+- [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.zcode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over economy math, analytics pipelines, or narrative direction
 
 ---

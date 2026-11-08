@@ -2,8 +2,8 @@
 
 ## Skill Summary
 
-`/skill-test` validates skills (`.claude/skills/*/SKILL.md`) and agents
-(`.claude/agents/*.md`). It has four modes:
+`/skill-test` validates skills (`.zcode/skills/*/SKILL.md`) and agents
+(`.zcode/agents/*.md`). It has four modes:
 
 - **static** `[name | all]`: runs 7 structural checks on a skill (frontmatter,
   phases, verdict keywords, ask-before-write language, next-step handoff, fork
@@ -11,14 +11,14 @@
   into `references/` files is read whole (`SKILL.md` and every references file) for
   checks 2-5; the frontmatter checks (1, 6, 7) read `SKILL.md` only. Per-skill
   results are COMPLIANT, WARNINGS, NON-COMPLIANT or NOT ASSESSED. It also runs
-  `.claude/scripts/agent-check.sh` and reports its agent and delegation lines as
+  `.zcode/scripts/agent-check.sh` and reports its agent and delegation lines as
   observations that never change a verdict, and runs
-  `.claude/scripts/compat-inventory.sh` and reports each place the file depends on
-  something only Claude Code provides, by feature, the same way; given an agent
+  `.zcode/scripts/compat-inventory.sh` and reports each place the file depends on
+  something only ZCode provides, by feature, the same way; given an agent
   name, it reports only those observations, with no verdict. Writes nothing.
 - **spec** `[skill-or-agent-name]`: resolves the name through
   `studio-tests/catalog.yaml`, reads the file and the spec at the
-  entry's `spec:` path, plus `CLAUDE.md` and every file it imports with `@path`,
+  entry's `spec:` path, plus `AGENTS.md` and every file it imports with `@path`,
   and marks each assertion — the spec's Static Assertions included, for a skill
   as for an agent — PASS / PARTIAL / FAIL / NOT ASSESSED. Case and Overall
   Verdicts are the worst result beneath them (FAIL, PARTIAL, NOT ASSESSED,
@@ -56,7 +56,7 @@ None. `/skill-test` is a meta-utility skill. No director gates apply.
 
 Every case's `project.yaml` sets `modes.rigor: minimal` and
 `modes.automation: collaborative`, with no `project.local.yaml`, unless its own
-Fixture says otherwise. Rules: `studio-tests/CLAUDE.md` §
+Fixture says otherwise. Rules: `studio-tests/AGENTS.md` §
 Fixture defaults.
 
 ---
@@ -66,7 +66,7 @@ Fixture defaults.
 ### Case 1: Static Mode — Well-formed skill, all 7 checks pass, COMPLIANT
 
 **Fixture:**
-- `.claude/skills/brainstorm/SKILL.md` exists and satisfies all 7 checks:
+- `.zcode/skills/brainstorm/SKILL.md` exists and satisfies all 7 checks:
   - Has all 5 required frontmatter fields
   - Has ≥2 phase headings
   - Has verdict keywords
@@ -78,7 +78,7 @@ Fixture defaults.
 **Input:** `/skill-test static brainstorm`
 
 **Expected behavior:**
-1. Skill reads `.claude/skills/brainstorm/SKILL.md` fully
+1. Skill reads `.zcode/skills/brainstorm/SKILL.md` fully
 2. Skill runs all 7 structural checks
 3. Output is the single-skill block `=== Skill Static Check: /brainstorm ===`
    listing Check 1 – Check 7, each PASS
@@ -96,7 +96,7 @@ Fixture defaults.
 ### Case 2: Static Mode — Skill Missing Ask-Before-Write Despite Write Tool in allowed-tools
 
 **Fixture:**
-- `.claude/skills/some-skill/SKILL.md` has `Write` in `allowed-tools` frontmatter
+- `.zcode/skills/some-skill/SKILL.md` has `Write` in `allowed-tools` frontmatter
 - The body has no ask-before-write language in any form Check 4 accepts:
   no "May I write", no "before writing"/"approval" near a write instruction,
   no "ask" and "write" in the same section
@@ -126,10 +126,10 @@ Fixture defaults.
 - The sandbox's copy of that spec is the live one (9 test cases and a Static
   Assertions list) with one Static Assertion added: "Balance values link to
   their source formula or rationale" — met only by
-  `.claude/docs/coding-standards.md` (imported by `CLAUDE.md`), not by the skill
+  `.zcode/docs/coding-standards.md` (imported by `AGENTS.md`), not by the skill
   or its gate files themselves. The live spec has no such line, so the copy is
   edited for the case
-- `.claude/skills/gate-check/` holds `SKILL.md` and 12 `references/` files
+- `.zcode/skills/gate-check/` holds `SKILL.md` and 12 `references/` files
   (6 phase files, 6 gate files)
 - The user declines the results write
 
@@ -139,7 +139,7 @@ Fixture defaults.
 1. Skill resolves `gate-check` as a skill via the catalog and takes the spec
    path from its `spec:` field
 2. Skill reads the skill — `SKILL.md` and all 12 `references/` files — the
-   spec, `CLAUDE.md` and its `@`-imported files
+   spec, `AGENTS.md` and its `@`-imported files
 3. The spec's Static Assertions are checked against `SKILL.md` and its
    `references/` files in a
    `Static Assertions:` block before Case 1
@@ -166,7 +166,7 @@ Fixture defaults.
 ### Case 4: Audit Mode — Coverage Table of All Skills and Agents
 
 **Fixture:**
-- `.claude/skills/` contains 74 skill directories; 73 have a spec at the path
+- `.zcode/skills/` contains 74 skill directories; 73 have a spec at the path
   their catalog entry names (in the sandbox, one skill's catalog `spec:` is
   emptied and its spec file removed — every live skill has a spec)
 - `catalog.yaml` has an `agents:` section with 49 entries, all with specs
@@ -176,7 +176,7 @@ Fixture defaults.
 **Expected behavior:**
 1. Both inputs run audit mode — no argument is the audit default, not a usage
    message
-2. Skill globs `.claude/skills/*/SKILL.md` for skills and reads the catalog's
+2. Skill globs `.zcode/skills/*/SKILL.md` for skills and reads the catalog's
    `agents:` section for agents
 3. For each skill: Has Spec (from the catalog `spec:` path, or a glob under
    `studio-tests/skills/`), last static/category dates and
@@ -201,7 +201,7 @@ Fixture defaults.
 - `studio-tests/quality-rubric.md` has a `### gate` section with
   metrics G1–G5
 - `catalog.yaml` gives `gate-check` `category: gate`
-- `.claude/skills/gate-check/SKILL.md` meets every metric except G2 — Director
+- `.zcode/skills/gate-check/SKILL.md` meets every metric except G2 — Director
   panel width (only CD-PHASE-GATE is spawned at `workflow: full`)
 - The user approves the catalog update
 
@@ -209,7 +209,7 @@ Fixture defaults.
 
 **Expected behavior:**
 1. Skill reads the `category:` from the catalog, then the `### gate` section of the rubric
-2. Skill reads the skill and the `CLAUDE.md` context, and evaluates G1–G5
+2. Skill reads the skill and the `AGENTS.md` context, and evaluates G1–G5
 3. Each metric is marked PASS, FAIL or WARN; G2 is FAIL with a quoted Gap line
 4. Report ends `Verdict: FAIL (1 failure, 0 warnings)` and a Fix line
 5. Skill asks "May I update `studio-tests/catalog.yaml` to record
@@ -228,8 +228,8 @@ Fixture defaults.
 **Fixture:**
 - `catalog.yaml` lists `creative-director` under `agents:` with
   `spec: studio-tests/agents/directors/creative-director.md`
-- `.claude/agents/creative-director.md` declares `model: opus`; there is no
-  `.claude/skills/creative-director/`
+- `.zcode/agents/creative-director.md` declares `model: opus`; there is no
+  `.zcode/skills/creative-director/`
 - The spec asserts "Model tier is `opus`"
 - Suppose one spec case is a redirect: the agent is asked to pick the project's
   engine. The agent's "What This Agent Must NOT Do" list says "Make engine or
@@ -264,7 +264,7 @@ Fixture defaults.
 ### Case 7: Static All — an unreadable skill is NOT ASSESSED and counted
 
 **Fixture:**
-- `.claude/skills/` holds 74 skill directories; one `SKILL.md` cannot be
+- `.zcode/skills/` holds 74 skill directories; one `SKILL.md` cannot be
   read (the Read call fails — permission denied), so none of its checks can
   start. (A file that is read but whose frontmatter does not parse is a
   different case: Check 1 fails and it is NON-COMPLIANT.)
@@ -288,7 +288,7 @@ Fixture defaults.
 ### Case 8: Spec Mode — an unevaluable assertion makes the run NOT ASSESSED
 
 **Fixture:**
-- `.claude/skills/brainstorm/SKILL.md` and its spec exist
+- `.zcode/skills/brainstorm/SKILL.md` and its spec exist
 - Every assertion in the spec passes except one, which names a fixture file
   the spec never defines
 - The user approves the results write
@@ -333,11 +333,11 @@ Fixture defaults.
 ### Case 10: Static Mode — a split skill is read whole, but its frontmatter comes from SKILL.md
 
 **Fixture:**
-- `.claude/skills/split-skill/SKILL.md` has all five frontmatter fields, no
+- `.zcode/skills/split-skill/SKILL.md` has all five frontmatter fields, no
   `context:` key, and two phase headings (`## Phase 1: Gather`, `## Phase 2: Report`)
   that each say "Read `references/N-name.md` now and follow it". It holds no verdict
   keyword, no ask-before-write language and no next-step handoff itself
-- `.claude/skills/split-skill/references/2-report.md` holds `Verdict: **COMPLETE**`,
+- `.zcode/skills/split-skill/references/2-report.md` holds `Verdict: **COMPLETE**`,
   the line "May I write this report to `production/qa/report.md`?" and a closing
   "Next step: `/gate-check`"; `references/1-gather.md` holds only instructions
 - Run A: as above. Run B: the same skill, except `argument-hint:` is missing from
@@ -393,4 +393,4 @@ Fixture defaults.
 - Audit mode counts are approximate — the exact number of skills and agents will
   change as the system grows; the fixture's numbers are illustrative.
 - A spec case that names a director gate ID has the agent evaluated against
-  `.claude/docs/director-gates/[gate-id].md`; not separately fixture-tested.
+  `.zcode/docs/director-gates/[gate-id].md`; not separately fixture-tested.
