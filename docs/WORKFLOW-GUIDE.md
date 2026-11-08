@@ -883,7 +883,6 @@ scope clarity. Verdict: READY / NEEDS WORK / BLOCKED / NOT ASSESSED.
 - `gameplay-programmer` for gameplay systems
 - `engine-programmer` for core engine work
 - `ai-programmer` for AI behavior
-- `network-programmer` for multiplayer
 - `ui-programmer` for UI code
 - `tools-programmer` for dev tools
 
@@ -1368,17 +1367,17 @@ Tier 1 (Directors):    creative-director, technical-director, producer
                                           |
 Tier 2 (Leads):        game-designer, lead-programmer, art-director,
                        audio-director, narrative-director, qa-lead,
-                       release-manager, localization-lead
+                       release-manager
                                           |
 Tier 3 (Specialists):  gameplay-programmer, engine-programmer,
-                       ai-programmer, network-programmer, ui-programmer,
+                       ai-programmer, ui-programmer,
                        tools-programmer, systems-designer, level-designer,
                        economy-designer, world-builder, writer,
                        technical-artist, sound-designer, ux-designer,
                        qa-tester, performance-analyst, devops-engineer,
-                       analytics-engineer, accessibility-specialist,
-                       live-ops-designer, prototyper, security-engineer,
-                       community-manager, godot-specialist,
+                       accessibility-specialist,
+                       prototyper, security-engineer,
+                       godot-specialist,
                        godot-gdscript-specialist, godot-shader-specialist,
                        godot-csharp-specialist, godot-gdextension-specialist,
                        unity-specialist, unity-dots-specialist,
@@ -1530,7 +1529,6 @@ Reads existing code and generates GDD-format design documentation from it.
 | Implement gameplay code | `gameplay-programmer` | 3 |
 | Implement core engine systems | `engine-programmer` | 3 |
 | Implement AI behavior | `ai-programmer` | 3 |
-| Implement multiplayer | `network-programmer` | 3 |
 | Implement UI | `ui-programmer` | 3 |
 | Build dev tools | `tools-programmer` | 3 |
 | Review code architecture | `lead-programmer` | 2 |
@@ -1543,14 +1541,10 @@ Reads existing code and generates GDD-format design documentation from it.
 | Plan test strategy | `qa-lead` | 2 |
 | Profile performance | `performance-analyst` | 3 |
 | Set up CI/CD | `devops-engineer` | 3 |
-| Design analytics | `analytics-engineer` | 3 |
 | Check accessibility | `accessibility-specialist` | 3 |
-| Plan live operations | `live-ops-designer` | 3 |
 | Manage a release | `release-manager` | 2 |
-| Manage localization | `localization-lead` | 2 |
 | Prototype quickly | `prototyper` | 3 |
 | Audit security | `security-engineer` | 3 |
-| Communicate with players | `community-manager` | 3 |
 | Godot-specific help | `godot-specialist` | 3 |
 | GDScript-specific help | `godot-gdscript-specialist` | 3 |
 | Godot shader help | `godot-shader-specialist` | 3 |
@@ -1590,7 +1584,7 @@ conflicts go to `producer`.
 
 ## Appendix B: Slash Command Quick-Reference
 
-### All 74 Commands by Category
+### All 72 Commands by Category
 
 #### Onboarding and Navigation (7)
 
@@ -1718,7 +1712,6 @@ conflicts go to `producer`.
 | `/team-audio` | Audio: direction through implemented events | 5-6 |
 | `/team-polish` | Coordinated polish: perf + art + audio + QA | 6 |
 | `/team-release` | Release coordination: build + QA + deployment | 7 |
-| `/team-live-ops` | Live-ops planning: seasonal events, battle pass, retention | 7+ |
 | `/team-qa` | Full QA cycle: strategy, execution, coverage, sign-off | 6-7 |
 
 ---

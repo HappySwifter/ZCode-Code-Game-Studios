@@ -350,7 +350,7 @@ behavior: strict project defaults for CI, looser developer overrides for local w
 > only spawner), so in the orchestrators
 > `lean` and `solo` behave the same, and `full` adds two things:
 > `/team-release`'s technical-director release sign-off, and, at
-> `team.size: small`, `/team-narrative`'s `localization-lead` and `world-builder`.
+> `team.size: small`, `/team-narrative`'s `world-builder`.
 >
 > Outside the orchestrators, the skills in the *Core skills* table below read
 > `review_mode` as that table documents.
@@ -417,7 +417,7 @@ pipeline's own review steps run in every mode.
 |-------|------|------|------|
 | **All nine `team-*`** | Every director gate the pipeline names | PHASE-GATE-type gates only | No director gates |
 | **team-release** | + technical-director release sign-off before the go/no-go call | Sign-off not run — recorded as `not run (review_mode: lean)` | Sign-off not run — recorded as `not run (review_mode: solo)` |
-| **team-narrative** | ND-CONSISTENCY; at `team.size: small`, + `localization-lead` and `world-builder` | ND-CONSISTENCY; at `small`, `narrative-director` + `writer` only | ND-CONSISTENCY still runs when `narrative-director` is active |
+| **team-narrative** | ND-CONSISTENCY; at `team.size: small`, + `world-builder` | ND-CONSISTENCY; at `small`, `narrative-director` + `writer` only | ND-CONSISTENCY still runs when `narrative-director` is active |
 
 ---
 
@@ -634,7 +634,7 @@ checklists differ per phase per mode.
 | Technical Setup → Pre-Production | engine, art bible sections 1–4+, 3+ ADRs, architecture, UX specs started | engine, art bible only if visual assets, critical ADRs, architecture | engine configured (required floor) |
 | Pre-Production → Production | sprint plan, complete art bible, epics, UX specs, control manifest; Vertical Slice + its playtest recommended (absent → CONCERNS) | epics, sprint plan; complete art bible, UX specs, control manifest recommended; Vertical Slice recommended | the brief's Build order + stories under `production/epics/`; the Vertical Slice items drop — the core loop is fun and runs end to end, checked on the current build |
 | Production → Polish | core mechanics, tests, smoke check, QA sign-off, 3+ playtests | core mechanics, smoke check, playable end to end, 1+ playtest, no open S1 bugs | smoke check, playable end to end, no open S1 bugs |
-| Polish → Release | all features, content complete, localization (`/localize qa` per locale), QA, smoke, no open S1–S3 bugs, newest `/security-audit` with no open CRITICAL/HIGH | all features, smoke, no open S1 bugs, the security audit | smoke, no open S1 bugs |
+| Polish → Release | all features, content complete, QA, smoke, no open S1–S3 bugs, newest `/security-audit` with no open CRITICAL/HIGH | all features, smoke, no open S1 bugs, the security audit | smoke, no open S1 bugs |
 
 <!-- gate-check reconciliation: at `full` and `standard` the Vertical Slice
      keeps its long-standing "recommended, not blocking → CONCERNS if absent;
@@ -901,7 +901,7 @@ check-in. In `guided` the pipeline advances automatically unless BLOCKED. In
 `autonomous` the full pipeline runs end to end.
 
 `team-combat`, `team-ui`, `team-audio`, `team-qa`, `team-release`,
-`team-narrative`, `team-polish`, `team-level`, `team-live-ops`
+`team-narrative`, `team-polish`, `team-level`
 
 **Implementation skills — lower impact.** Pause for architectural questions
 before writing code. In `guided` only genuinely ambiguous decisions stop. In
@@ -913,7 +913,7 @@ before writing code. In `guided` only genuinely ambiguous decisions stop. In
 or routing questions. In `guided` defaults are applied automatically. In
 `autonomous` recommended defaults are taken without prompting.
 
-`start`, `adopt`, `setup-engine`, `retrospective`, `localize`, `propagate-design-change`,
+`start`, `adopt`, `setup-engine`, `retrospective`, `propagate-design-change`,
 `asset-spec`, `smoke-check`, `qa-plan`, `story-readiness`
 
 ---
@@ -1300,7 +1300,7 @@ closing, or produces a warning and lets work continue — per test type
 
 > **Different axis from `workflow`.** `workflow` controls *what docs are required.*
 > `team.size` controls *which agents exist to make them.* A solo dev on
-> `workflow: full` still doesn't need all 49 agents — they need the same coverage
+> `workflow: full` still doesn't need all 44 agents — they need the same coverage
 > from a smaller active set.
 
 ---
@@ -1311,7 +1311,7 @@ closing, or produces a warning and lets work continue — per test type
 |-------|-----------|-------|
 | `individual` | Core 8: `producer`, `game-designer`, `gameplay-programmer`, engine-specialist (engine-driven), `technical-artist`, `sound-designer`, `qa-tester`, `writer`. **Default.** | Directors and lead-* run only on explicit invocation (e.g. via `/architecture-decision`). Specialists outside the core 8 routed through their nearest core agent. Each `team-*` skill names its own set per value, which can sit outside the core 8 (`team-release` runs `release-manager`); each skill's own `team.size` list is authoritative, and the Affected skills table below mirrors it. |
 | `small` | Core 15: directors (CD, TD, PR) + leads (LP, AD, QL, ND) + game-designer + systems-designer + engine-specialist + technical-artist + sound-designer + qa-tester + ux-designer + writer | `team-*` skills add their `small` set (below); most reach their full pipeline only at `studio`. |
-| `studio` | All 49 agents available. Engine sub-specialists (e.g. `unity-dots-specialist` separate from `unity-specialist`) routed when relevant. The adversarial review pass in `team-combat`, `team-ui` and `team-polish`. | Commercial titles, learning the full org chart, large teams with parallel work. |
+| `studio` | All 44 agents available. Engine sub-specialists (e.g. `godot-shader-specialist` separate from `godot-specialist`) routed when relevant. The adversarial review pass in `team-combat`, `team-ui` and `team-polish`. | Commercial titles, learning the full org chart, large teams with parallel work. |
 
 ---
 
@@ -1320,14 +1320,13 @@ closing, or produces a warning and lets work continue — per test type
 | Skill | individual | small | studio |
 |-------|------|-------|--------|
 | **team-combat** | Single agent (gameplay-programmer) runs the pipeline; ai-programmer escalated only if AI work flagged | Default pipeline as documented | Default + the primary engine specialist may use its sub-specialists + adversarial review pass (Phase 5's qa-tester looks for how it breaks) |
-| **team-narrative** | writer only; narrative-director invoked only on explicit pillar conflict | narrative-director + writer, + localization-lead and world-builder at `review_mode: full` | All six narrative agents, whatever the review mode |
+| **team-narrative** | writer only; narrative-director invoked only on explicit pillar conflict | narrative-director + writer, + world-builder at `review_mode: full` | All five narrative agents, whatever the review mode |
 | **team-ui** | ui-programmer + ux-designer | + accessibility-specialist + art-director | + engine UI specialist + adversarial review pass (Phase 4's reviewers look for where it fails its spec) |
 | **team-audio** | sound-designer only | + audio-director + technical-artist + gameplay-programmer | + accessibility-specialist + the primary engine specialist |
 | **team-level** | level-designer only | + systems-designer + art-director + qa-tester | + narrative-director + world-builder + accessibility-specialist |
 | **team-qa** | qa-tester only; qa-lead invoked at phase gates only | qa-lead + qa-tester pipeline | qa-lead + per-story qa-tester spawn + sign-off |
-| **team-release** | release-manager only | + producer + devops-engineer + qa-lead + community-manager | + security-engineer + analytics-engineer + localization-lead + performance-analyst, and network-programmer when the game is multiplayer |
+| **team-release** | release-manager only | + producer + devops-engineer + qa-lead | + security-engineer + performance-analyst |
 | **team-polish** | performance-analyst + technical-artist; no programmer is active, so Phase 2's optimisation list is handed to `/dev-story` | + sound-designer + qa-tester + engine-programmer (implements Phase 2's optimisation list), and tools-programmer when Phase 1 traces a cause to a content authoring tool | engine-programmer, as at small, + adversarial review pass (Phase 5's qa-tester looks for how it breaks) |
-| **team-live-ops** | live-ops-designer + economy-designer | + analytics-engineer + community-manager | + writer + narrative-director |
 | **gate-check** | Panel width is `modes.workflow`'s axis, not this one (gates always run) — `team.size` affects only specialist depth within each director's review | Same as individual for directors; specialists within directors' reviews use small set | Same plus engine sub-specialists |
 | **architecture-decision** | TD-ADR (in `full` review mode) + the primary engine specialist | Same | Same — no sub-specialist or adversarial reviewer at any size |
 
@@ -1337,7 +1336,7 @@ closing, or produces a warning and lets work continue — per test type
 
 - `team.size` does not decide whether directors run: `/gate-check`'s panel follows `review_mode` and `modes.workflow`, and no `team-*` pipeline spawns a director phase gate. In a team skill, a "phase gate" is one of the decision points its own pipeline lists, whatever the `automation` mode.
 - `individual` does not disable agents — it just changes which are active by default. Any agent can still be invoked by name.
-- When `team.size: individual` and a non-core agent is needed (e.g. `network-programmer` for a multiplayer story), the skill emits an informational note and routes through the nearest active core agent.
+- When `team.size: individual` and a non-core agent is needed (e.g. `technical-artist` for a VFX-heavy story), the skill emits an informational note and routes through the nearest active core agent.
 
 ---
 
@@ -1367,8 +1366,8 @@ which specialists are routed and which architecture sections are required
 
 | Value | Meaning |
 |-------|---------|
-| `true` | Game has real-time online multiplayer. `/security-audit` runs its netcode category and rates a HIGH finding as release-blocking; `/team-release` adds `network-programmer`'s sign-off. |
-| `false` | No real-time multiplayer. `/security-audit` skips the netcode category and says so; `/team-release` does not spawn `network-programmer`. |
+| `true` | Game has real-time online multiplayer. `/security-audit` runs its netcode category and rates a HIGH finding as release-blocking. |
+| `false` | No real-time multiplayer. `/security-audit` skips the netcode category and says so. |
 
 ---
 
@@ -1377,7 +1376,7 @@ which specialists are routed and which architecture sections are required
 | Skill | multiplayer: true | multiplayer: false |
 |-------|------------------|-------------------|
 | **security-audit** | Includes netcode review — authentication, replication, cheat vectors | Netcode review skipped, and the report says so |
-| **team-release** | `network-programmer` included in release sign-off pipeline | `network-programmer` excluded |
+| **team-release** | performance-analyst sign-off included in the release pipeline | performance-analyst sign-off excluded |
 
 No other skill reads this key: `/dev-story`, `/create-architecture` and `/gate-check`
 decide networking scope from the story, GDD or architecture in front of them.
@@ -1416,7 +1415,7 @@ decide networking scope from the story, GDD or architecture in front of them.
 | **security-audit** | Category 2 (network) runs — server authority, packet validation, rate limits, plaintext tokens | Category 2 skipped only when `platform.multiplayer` is also false |
 | **team-release** | `security-engineer` sign-off when the game is online or stores player data | No online-driven security sign-off |
 
-No other skill reads this key: `/create-architecture`, `/dev-story`, `/team-live-ops`
+No other skill reads this key: `/create-architecture`, `/dev-story`
 and `/gate-check` decide online scope from the documents in front of them.
 
 ---

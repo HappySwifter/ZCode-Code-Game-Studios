@@ -31,7 +31,7 @@ Checked against the SKILL.md by `/skill-test spec` — no fixture needed.
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED
 - [ ] Contains "May I write" language (skill writes patch notes file)
-- [ ] Has a next-step handoff (`/release-checklist`, community-manager tone review)
+- [ ] Has a next-step handoff (`/release-checklist`, tone review)
 
 ---
 
@@ -174,7 +174,7 @@ Fixture defaults.
 
 ---
 
-### Case 5: Gate Compliance — No gate; community-manager is separate
+### Case 5: Gate Compliance — No gate
 
 **Fixture:**
 - `docs/CHANGELOG.md` has a `v0.4.0` entry with player-facing items; git history
@@ -188,12 +188,12 @@ Fixture defaults.
    only `automation`, never `review_mode`)
 2. Skill self-reviews the notes (Phase 5), then presents them and asks to write
 3. Next steps suggest `/release-checklist` and sharing the draft with the
-   community-manager for tone review before posting publicly
+   a tone review before posting publicly
 4. User approves; notes are written; verdict COMPLETE
 
 **Assertions:**
 - [ ] No director gate is invoked regardless of review mode
-- [ ] Output suggests (but does not require) a community-manager tone review before posting
+- [ ] Output suggests (but does not require) a tone review before posting
 - [ ] Skill proceeds directly from compilation and self-review to the "May I write" prompt
 - [ ] Verdict is COMPLETE
 

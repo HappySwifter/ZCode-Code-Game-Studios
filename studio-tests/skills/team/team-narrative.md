@@ -6,11 +6,11 @@ Orchestrates the narrative team through a five-phase pipeline: narrative directi
 (narrative-director) → world foundation, dialogue drafting and visual direction
 (world-builder, writer and art-director in parallel) → level narrative integration
 (level-designer) → consistency review (narrative-director) → polish + localization
-compliance (writer, localization-lead, and world-builder in parallel). Phase 0
+compliance (writer and world-builder in parallel). Phase 0
 resolves `review_mode`, `automation` and `team.size` and the skill announces the
 active set before Phase 1 — at the default `individual` only writer is spawned
 (narrative-director only on an explicit pillar conflict), `small` adds
-narrative-director, plus localization-lead and world-builder when `review_mode` is
+narrative-director, plus world-builder when `review_mode` is
 `full`, and `studio` activates every narrative agent whatever the review mode. Each agent drafts to a concrete path
 under `production/narrative/[content-slug]/` named in the skill's path table;
 Phase 4 runs the ND-CONSISTENCY gate; the orchestrator writes the final documents
@@ -29,15 +29,15 @@ dependency is unresolved.
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED
 - [ ] Contains "File Write Protocol" section
 - [ ] Sub-agents write drafts under `production/narrative/[content-slug]/`; the orchestrator writes only the final `design/narrative/` documents, after one "May I write" approval
-- [ ] Names a concrete draft path per agent (including level-designer and localization-lead) and the final `design/narrative/` document each design artifact becomes — localization-lead's review is not one, and stays in `production/`
+- [ ] Names a concrete draft path per agent (including level-designer) and the final `design/narrative/` document each design artifact becomes
 - [ ] Every agent prompt ends with the return contract: path written, ≤5-bullet summary, BLOCKED/CONCERNS items one line each
 - [ ] Defines a phase gate as a decision point the pipeline itself lists, whatever the `automation` mode, and claims no director spawn at phase gates
-- [ ] Has a next-step handoff at the end (references `/design-review`, `/localize extract`, `/dev-story`)
+- [ ] Has a next-step handoff at the end (references `/design-review`, `/dev-story`)
 - [ ] Error Recovery Protocol section is present: verify a named artifact is on disk, surface BLOCKED immediately, always produce a partial report, full procedure in `.zcode/docs/error-recovery-protocol.md`
 - [ ] `AskUserQuestion` is used at phase transitions before proceeding (`collaborative` mode)
 - [ ] Phase 0 resolves `team.size`, and the skill requires a one-line active-set announcement before Phase 1
 - [ ] Phase 2 explicitly spawns world-builder, writer and art-director in parallel
-- [ ] Phase 5 explicitly spawns writer, localization-lead, and world-builder in parallel
+- [ ] Phase 5 explicitly spawns writer and world-builder in parallel
 
 ---
 
@@ -73,7 +73,7 @@ Fixture defaults.
 7. `AskUserQuestion` presents level narrative plan; user approves before Phase 4 begins
 8. Phase 4: narrative-director is spawned with the ND-CONSISTENCY gate; reviews voices, lore and pacing and returns APPROVE
 9. `AskUserQuestion` presents review results; user approves before Phase 5 begins
-10. Phase 5: writer, localization-lead, and world-builder are spawned in parallel; writer performs final self-review; localization-lead validates i18n compliance; world-builder finalizes canon levels
+10. Phase 5: writer and world-builder are spawned in parallel; writer performs final self-review and checks strings for translation-hostile formatting; world-builder finalizes canon levels
 11. The orchestrator lists the final documents and asks once, "May I write these [N] narrative documents to `design/narrative/`?"; on approval it writes them
 12. Final summary report is presented
 13. Verdict: COMPLETE
@@ -85,7 +85,7 @@ Fixture defaults.
 - [ ] world-builder, writer and art-director Agent calls are issued simultaneously in Phase 2 (not sequentially)
 - [ ] level-designer is not launched until Phase 2 `AskUserQuestion` is approved
 - [ ] narrative-director is re-spawned in Phase 4 using gate ND-CONSISTENCY — in every review mode, since it is this pipeline's own review and `review_mode` never skips it — and its APPROVE / CONCERNS / REJECT verdict decides whether Phase 5 starts
-- [ ] Phase 5 spawns all three agents (writer, localization-lead, world-builder) simultaneously
+- [ ] Phase 5 spawns both agents (writer, world-builder) simultaneously
 - [ ] Each agent prompt names its draft path from the skill's path table
 - [ ] Nothing is written under `design/narrative/` before the single "May I write" approval
 - [ ] Summary report includes: narrative brief status, lore entries created/updated, dialogue lines written, level narrative integration points, consistency review results
@@ -147,29 +147,28 @@ Fixture defaults.
 
 ---
 
-### Case 4: Localization Compliance — localization-lead blocks on a non-translatable string
+### Case 4: Localization Compliance — writer blocks on a non-translatable string
 
 **Fixture:**
 - Resolved config block: `team.size: studio`, `automation: collaborative`
 - Phases 1–4 complete successfully
 - Phase 5 begins; writer and world-builder complete without issues
-- localization-lead finds a dialogue line that uses a hardcoded formatted date string (e.g., `"On March 12th, Year 3"`) that cannot survive locale-specific translation without a locale-aware formatter, and returns it as a BLOCKED item in its return contract
+- the writer finds a dialogue line that uses a hardcoded formatted date string (e.g., `"On March 12th, Year 3"`) that cannot survive locale-specific translation without a locale-aware formatter, and returns it as a BLOCKED item in its return contract
 
 **Input:** `/team-narrative ironveil faction introduction cutscene` (Phase 5 scenario)
 
 **Expected behavior:**
-1. Phase 5 spawns writer, localization-lead, and world-builder in parallel
-2. localization-lead returns BLOCKED: "String key `dialogue.ironveil.intro.003` contains a hardcoded date format (`March 12th, Year 3`) that will not localize correctly — requires a locale-aware date placeholder"
-3. Orchestrator surfaces it immediately: "localization-lead: BLOCKED — [reason with the string key]"
+1. Phase 5 spawns writer and world-builder in parallel
+2. writer returns BLOCKED: "String key `dialogue.ironveil.intro.003` contains a hardcoded date format (`March 12th, Year 3`) that will not localize correctly — requires a locale-aware date placeholder"
+3. Orchestrator surfaces it immediately: "writer: BLOCKED — [reason with the string key]"
 4. writer's and world-builder's Phase 5 outputs are kept in the partial report
 5. `AskUserQuestion` presents the error-recovery options:
    - Skip and note the gap in the final report (deliver with the string flagged)
-   - Retry with narrower scope (e.g., the writer revises that one line, then localization-lead re-checks it)
+   - Retry with narrower scope (e.g., the writer revises that one line and re-checks it)
    - Stop and resolve before finalizing
 6. If the user skips, the final summary lists the unfixed string key among its unresolved items; if the user stops, the verdict is `BLOCKED — [reason]`
 
 **Assertions:**
-- [ ] localization-lead is spawned in Phase 5 simultaneously with writer and world-builder
 - [ ] Hardcoded date format is identified as a localization blocker (not silently passed)
 - [ ] The specific string key and reason are included in the surfaced BLOCKED message
 - [ ] `AskUserQuestion` offers skip-and-note-gap, retry, and stop options
@@ -221,10 +220,10 @@ Fixture defaults.
   Runs B and E: `--review lean`. Runs C and F: `--review solo`
 
 **Expected behavior:**
-1. Runs A–C (`studio`): all six agents are active whatever the review mode, so the
+1. Runs A–C (`studio`): all five agents are active whatever the review mode, so the
    active-set line, the phases and the agents spawned are identical
 2. Runs D–F (`small`): narrative-director + writer are active in all three. Run D
-   (`full`) adds localization-lead and world-builder; in Runs E and F they are
+   (`full`) adds world-builder; in Runs E and F it is
    consulted through the writer and named in the `Not spawned this run:` line
 3. Phase 4 spawns `narrative-director` with ND-CONSISTENCY in all six runs: "This
    phase runs in every review mode — it is this pipeline's own review, not an optional
@@ -235,17 +234,17 @@ Fixture defaults.
 - [ ] ND-CONSISTENCY is spawned in Phase 4 in every one of the six runs; `lean` and `solo` do not skip it
 - [ ] No director gate (CD-, TD-, PR- or AD-PHASE-GATE) is spawned in any run
 - [ ] Runs A–C show the same active set, phases and asks
-- [ ] At `small`, localization-lead and world-builder are spawned only in Run D (`full`) and named under `Not spawned this run:` in Runs E and F
-- [ ] At `small` in `lean` and `solo`, the lore and i18n work is still done, through the writer, and the output says so
+- [ ] At `small`, world-builder is spawned only in Run D (`full`) and named under `Not spawned this run:` in Runs E and F
+- [ ] At `small` in `lean` and `solo`, the lore work is still done, through the writer, and the output says so
 - [ ] The APPROVE / CONCERNS / REJECT answer of ND-CONSISTENCY decides whether Phase 5 starts in every mode
 
 ---
 
 ## Protocol Compliance
 
-- [ ] At the default `team.size: individual`, the run opens with `Active set (team.size: individual): writer.` and a `Not spawned this run:` line naming narrative-director, world-builder, art-director, level-designer and localization-lead, consulted through writer — before any agent is spawned
+- [ ] At the default `team.size: individual`, the run opens with `Active set (team.size: individual): writer.` and a `Not spawned this run:` line naming narrative-director, world-builder, art-director and level-designer, consulted through writer — before any agent is spawned
 - [ ] In `collaborative` mode, `AskUserQuestion` is used after every phase output before the next phase launches
-- [ ] Parallel spawning: Phase 2 (world-builder + writer + art-director) and Phase 5 (writer + localization-lead + world-builder) issue all Agent calls before waiting for results
+- [ ] Parallel spawning: Phase 2 (world-builder + writer + art-director) and Phase 5 (writer + world-builder) issue all Agent calls before waiting for results
 - [ ] No write under `design/` happens without a "May I write" approval — `design/` is outside the bounded exception (`production/`, `docs/`, `tests/`)
 - [ ] At `team.size: individual`, Phase 4 does not spawn narrative-director; the output says "ND-CONSISTENCY not run — narrative-director is not active at `team.size: individual`; consistency self-checked by writer." and never presents the writer's self-check as the gate's verdict
 - [ ] An ND-CONSISTENCY `NOT ASSESSED [missing input]` answer is never treated as APPROVE: the missing input is named, then either supplied and the gate re-run, or `ND-CONSISTENCY: NOT ASSESSED — [input]` is carried into the report's consistency review results and the verdict reads `COMPLETE — consistency NOT ASSESSED ([input])`, never a plain COMPLETE
@@ -253,7 +252,7 @@ Fixture defaults.
 - [ ] BLOCKED status from any agent is surfaced immediately — not silently skipped
 - [ ] A partial report is always produced when some agents complete and others block
 - [ ] Verdict is exactly COMPLETE, `COMPLETE — consistency NOT ASSESSED ([input])` or BLOCKED — no other verdict values used
-- [ ] Next Steps handoff references `/design-review`, `/localize extract`, and `/dev-story`
+- [ ] Next Steps handoff references `/design-review` and `/dev-story`
 
 ---
 
@@ -266,8 +265,8 @@ Fixture defaults.
   Recovery Protocol are not separately walked to completion — Cases 2, 4 and 5 check that
   they are offered.
 - Advisory localization concerns (e.g., German/Finnish +30% expansion warnings) are not
-  given a case; Case 4 covers only a concern the localization-lead returns as BLOCKED.
+  given a case; Case 4 covers only a concern the writer returns as BLOCKED.
 - The writer's "all lines under 120 characters" and "string keys not raw strings" checks
   in Phase 5 are covered implicitly by Case 4's localization compliance scenario.
-- The `small` active set (review_mode-dependent localization-lead and world-builder) is
+- The `small` active set (review_mode-dependent world-builder) is
   checked at the roster level in Case 6; its phase-by-phase run is not walked.

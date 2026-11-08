@@ -248,7 +248,7 @@ not be read or parsed, or its checks could not run — name the reason).
 
 For `static all`, produce a summary table then list any non-compliant skills:
 ```
-=== Skill Static Check: All 74 Skills ===
+=== Skill Static Check: All 72 Skills ===
 
 Skill                  | Result       | Issues
 -----------------------|--------------|-------
@@ -278,7 +278,7 @@ whose frontmatter does not parse is a different case: Check 1 fails on it (see
 above), so it is reported **NON-COMPLIANT**, not NOT ASSESSED — the defect is in
 the skill, not in the linter's access to it.
 
-**And state the denominator.** `All 74 Skills` in the header must be the number
+**And state the denominator.** `All 72 Skills` in the header must be the number
 actually examined, not the number that exist: report `[N] of [M] skills checked`
 whenever they differ. A summary whose counts silently sum to less than its own
 title is the failure this skill is supposed to catch in others.

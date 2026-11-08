@@ -26,7 +26,7 @@
 - [ ] No known open S1 Critical, S2 High or S3 Medium bugs
 - [ ] No open CRITICAL or HIGH findings in the newest `production/security/security-audit-*.md` whose **Scope** is `full`, as updated by any later `quick` report (the re-run `/security-audit` prescribes after remediation). A later `network`, `save` or `input` report adds its open findings but never clears a category it did not scan — any open CRITICAL or HIGH finding means not ready (a blocker). No `full`-scope audit report means the check could not run: this item is NOT ASSESSED, never passed. A report whose release recommendation is itself NOT ASSESSED makes this item NOT ASSESSED too
 - [ ] Accessibility basics covered (remapping, text scaling if applicable)
-- [ ] Localization verified for all target languages — every translated locale being shipped has a `/localize qa` verdict of PASS or PASS WITH CONDITIONS (`production/localization/loc-qa-[locale]-[date].md`). A FAIL blocks that locale; the others may still ship. A locale with no QA report, or whose QA reported NOT ASSESSED (nobody has played it), has not been verified: this item is NOT ASSESSED, never passed. The source locale (`en`, per `/localize`) is not a target language and needs no `/localize qa` report; a game that ships only its source locale marks this item N/A and says so
+- [ ] Localization verified for all target languages — the solo-dev edition ships without `/localize`, so a game that ships only its source locale marks this item N/A and says so; if you localize by other means, every shipped locale has been played before this item is marked pass
 - [ ] Legal requirements met (EULA, privacy policy, age ratings if applicable)
 - [ ] Build compiles and packages cleanly
 

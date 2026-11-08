@@ -113,7 +113,6 @@ Based on the verdict, suggest specific next steps:
 > failing. Say plainly that both docs are hand-authored from their templates.
 - **Need a quick sprint check?** → `/sprint-status` for current sprint progress snapshot
 - **Performance unknown?** → `/perf-profile`
-- **Not localized?** → `/localize`
 - **No security audit, or open CRITICAL/HIGH findings?** → `/security-audit` (after fixes, `/security-audit quick` to confirm)
 - **Ready for release?** → `/launch-checklist`
 

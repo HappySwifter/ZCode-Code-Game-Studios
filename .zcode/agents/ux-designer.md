@@ -99,5 +99,5 @@ Every feature must pass:
 
 ### Reports to: `art-director` for visual UX, `game-designer` for gameplay UX
 ### Coordinates with: `ui-programmer` for implementation feasibility,
-`analytics-engineer` for UX metrics, `accessibility-specialist` for the
+`accessibility-specialist` for the
 accessibility standards every flow must meet

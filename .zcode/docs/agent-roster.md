@@ -26,7 +26,6 @@ session's model.
 | `narrative-director` | Story and writing | Story arcs, world-building, character design, dialogue strategy |
 | `qa-lead` | Quality assurance | Test strategy, bug triage, release readiness, regression planning |
 | `release-manager` | Release pipeline | Build management, versioning, changelogs, deployment, rollbacks |
-| `localization-lead` | Internationalization | String externalization, translation pipeline, locale testing |
 
 ## Tier 3 -- Specialist Agents
 | Agent | Domain | When to Use |
@@ -37,7 +36,6 @@ session's model.
 | `gameplay-programmer` | Gameplay code | Feature implementation, gameplay systems code |
 | `engine-programmer` | Engine systems | Core engine, rendering, physics, memory management |
 | `ai-programmer` | AI systems | Behavior trees, pathfinding, NPC logic, state machines |
-| `network-programmer` | Networking | Netcode, replication, lag compensation, matchmaking |
 | `tools-programmer` | Dev tools | Editor extensions, pipeline tools, debug utilities |
 | `ui-programmer` | UI implementation | UI framework, screens, widgets, data binding |
 | `technical-artist` | Tech art | Shaders, VFX, optimization, art pipeline tools |
@@ -47,13 +45,10 @@ session's model.
 | `qa-tester` | Test execution | Writing test cases, bug reports, test checklists |
 | `performance-analyst` | Performance | Profiling, optimization recs, memory analysis |
 | `devops-engineer` | Build/deploy | CI/CD, build scripts, version control workflow |
-| `analytics-engineer` | Telemetry | Event tracking, dashboards, A/B test design |
 | `ux-designer` | UX flows | User flows, wireframes, accessibility, input handling |
 | `prototyper` | Rapid prototyping | Throwaway prototypes, mechanic testing, feasibility validation |
 | `security-engineer` | Security | Anti-cheat, exploit prevention, save encryption, network security |
 | `accessibility-specialist` | Accessibility | WCAG compliance, colorblind modes, remapping, text scaling |
-| `live-ops-designer` | Live operations | Seasons, events, battle passes, retention, live economy |
-| `community-manager` | Community | Patch notes, player feedback, crisis comms, community health |
 
 ## Engine-Specific Agents (use the set matching your engine)
 

@@ -126,7 +126,7 @@ analysis and must ask before recommending any file writes.
 ### `team`
 
 **Skills**: team-combat, team-narrative, team-audio, team-level, team-ui, team-qa,
-team-release, team-polish, team-live-ops
+team-release, team-polish
 
 Team skills orchestrate multiple specialist agents for a department. They must
 spawn the right agents, run independent ones in parallel, and surface blocks immediately.
@@ -206,7 +206,7 @@ systems-designer, level-designer
 ### `specialist`
 
 **Agents**: gameplay-programmer, ai-programmer, technical-artist, sound-designer,
-engine-programmer, tools-programmer, network-programmer, security-engineer,
+engine-programmer, tools-programmer, security-engineer,
 accessibility-specialist, ux-designer, ui-programmer, performance-analyst, prototyper,
 writer, world-builder
 
@@ -242,8 +242,7 @@ ue-replication-specialist
 
 ### `operations`
 
-**Agents**: devops-engineer, release-manager, live-ops-designer, community-manager,
-analytics-engineer, economy-designer, localization-lead
+**Agents**: devops-engineer, release-manager, economy-designer
 
 | Metric | PASS criteria |
 |---|---|

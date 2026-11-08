@@ -3,7 +3,7 @@
   <p align="center">
     Turn a single ZCode session into a full game development studio.
     <br />
-    49 agents. 74 skills. One coordinated AI team.
+    44 agents. 72 skills. One coordinated AI team.
   </p>
   <p align="center">
     A ZCode port of <a href="https://github.com/Donchitos/Claude-Code-Game-Studios">Claude Code Game Studios</a> — same studio, rewired for ZCode.
@@ -12,8 +12,8 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-  <a href=".zcode/agents"><img src="https://img.shields.io/badge/agents-49-blueviolet" alt="49 Agents"></a>
-  <a href=".zcode/skills"><img src="https://img.shields.io/badge/skills-74-green" alt="74 Skills"></a>
+  <a href=".zcode/agents"><img src="https://img.shields.io/badge/agents-44-blueviolet" alt="44 Agents"></a>
+  <a href=".zcode/skills"><img src="https://img.shields.io/badge/skills-72-green" alt="72 Skills"></a>
   <a href=".zcode/hooks"><img src="https://img.shields.io/badge/hooks-15-orange" alt="15 Hooks"></a>
   <a href=".zcode/rules"><img src="https://img.shields.io/badge/rules-14-red" alt="14 Rules"></a>
   <a href="https://code.zcode.com/docs"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for ZCode"></a>
@@ -57,8 +57,8 @@ The result: you still make every decision, but now you have a team that asks the
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| **Agents** | 49 | Specialized subagents across design, programming, art, audio, narrative, QA, and production |
-| **Skills** | 74 | Slash commands for every workflow phase (`/start`, `/design-system`, `/create-epics`, `/create-stories`, `/dev-story`, `/story-done`, etc.) |
+| **Agents** | 44 | Specialized subagents across design, programming, art, audio, narrative, QA, and production |
+| **Skills** | 72 | Slash commands for every workflow phase (`/start`, `/design-system`, `/create-epics`, `/create-stories`, `/dev-story`, `/story-done`, etc.) |
 | **Hooks** | 15 | Automated validation on commits, pushes, asset changes, design-doc reads, writes and registries, session lifecycle, agent audit trail, and gap detection |
 | **Rules** | 14 | Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code, scene and asset files, and more |
 | **Templates** | 62 | Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility, and more |
@@ -74,17 +74,16 @@ Tier 1 — Directors
 Tier 2 — Department Leads
   game-designer        lead-programmer       art-director
   audio-director       narrative-director    qa-lead
-  release-manager      localization-lead
+  release-manager
 
 Tier 3 — Specialists
   gameplay-programmer  engine-programmer     ai-programmer
-  network-programmer   tools-programmer      ui-programmer
-  systems-designer     level-designer        economy-designer
-  technical-artist     sound-designer        writer
-  world-builder        ux-designer           prototyper
-  performance-analyst  devops-engineer       analytics-engineer
-  security-engineer    qa-tester             accessibility-specialist
-  live-ops-designer    community-manager
+  tools-programmer     ui-programmer         systems-designer
+  level-designer       economy-designer      technical-artist
+  sound-designer       writer                world-builder
+  ux-designer          prototyper            performance-analyst
+  devops-engineer      security-engineer     qa-tester
+  accessibility-specialist
 ```
 
 In this ZCode port no agent pins a model: all 49 run on your session's model
@@ -104,7 +103,7 @@ The template includes agent sets for all three major engines. Use the set that m
 
 ## Slash Commands
 
-Type `/` in ZCode to access all 74 skills:
+Type `/` in ZCode to access all 72 skills:
 
 **Onboarding & Navigation**
 `/start` `/help` `/project-stage-detect` `/setup-engine` `/adopt` `/settings`
@@ -137,10 +136,10 @@ Type `/` in ZCode to access all 74 skills:
 `/release-checklist` `/launch-checklist` `/changelog` `/patch-notes` `/hotfix` `/day-one-patch`
 
 **Creative & Content**
-`/prototype` `/vertical-slice` `/onboard` `/localize`
+`/prototype` `/vertical-slice` `/onboard`
 
 **Team Orchestration** (coordinate multiple agents on a single feature)
-`/team-combat` `/team-narrative` `/team-ui` `/team-release` `/team-polish` `/team-audio` `/team-level` `/team-live-ops` `/team-qa`
+`/team-combat` `/team-narrative` `/team-ui` `/team-release` `/team-polish` `/team-audio` `/team-level` `/team-qa`
 
 ## Does it produce games, or documents?
 
@@ -290,7 +289,7 @@ studio-tests/                       # QA for the skills and agents themselves �
 
 CCGS is a template you are meant to edit. `studio-tests/` is how
 you check that an edited or newly written skill still holds up — a catalog of all
-74 skills and 49 agents, per-category quality rubrics, behavioral specs, and
+72 skills and 44 agents, per-category quality rubrics, behavioral specs, and
 templates for writing specs of your own.
 
 ```

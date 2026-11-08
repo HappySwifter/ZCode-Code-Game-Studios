@@ -144,7 +144,6 @@ PHASE 7: RELEASE
         │
         ▼ (post-launch, ongoing)
   /hotfix ─────────────────────────────────────────────────────► emergency fix with audit trail
-  /team-live-ops ──────────────────────────────────────────────► live-ops content plan
 ```
 
 ---

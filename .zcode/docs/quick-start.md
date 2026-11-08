@@ -44,7 +44,7 @@ There are three tiers of agents:
 
 - **Tier 2 — Department leads** who own their domain
   - `game-designer`, `lead-programmer`, `art-director`, `audio-director`,
-    `narrative-director`, `qa-lead`, `release-manager`, `localization-lead`
+    `narrative-director`, `qa-lead`, `release-manager`
 
 - **Tier 3 — Specialists** who execute within their domain
   - Designers, programmers, artists, writers, testers, engineers
@@ -73,7 +73,6 @@ Ask yourself: "What department would handle this in a real studio?"
 | Resolve a creative conflict | `creative-director` |
 | Make an architecture decision | `technical-director` |
 | Manage a release | `release-manager` |
-| Prepare strings for translation | `localization-lead` |
 | Test a mechanic idea quickly | `prototyper` |
 | Review code for security issues | `security-engineer` |
 | Check accessibility compliance | `accessibility-specialist` |
@@ -92,8 +91,6 @@ Ask yourself: "What department would handle this in a real studio?"
 | Write Godot C# code | `godot-csharp-specialist` |
 | Create Godot shaders | `godot-shader-specialist` |
 | Build GDExtension modules | `godot-gdextension-specialist` |
-| Plan live events and seasons | `live-ops-designer` |
-| Write patch notes for players | `community-manager` |
 | Brainstorm a new game idea | Use `/brainstorm` skill |
 
 ### 3. Use Slash Commands for Common Tasks
@@ -152,7 +149,6 @@ Ask yourself: "What department would handle this in a real studio?"
 | `/day-one-patch` | Prepare a focused day-one patch for known issues discovered after gold master |
 | `/prototype` | Concept prototype — validate core idea before writing GDDs (Phase 1) |
 | `/vertical-slice` | Production-quality end-to-end build — validate full game loop (Phase 4) |
-| `/localize` | Localization scan, extract, validate |
 | `/team-combat` | Orchestrate full combat team pipeline |
 | `/team-narrative` | Orchestrate full narrative team pipeline |
 | `/team-ui` | Orchestrate full UI team pipeline |
@@ -160,7 +156,6 @@ Ask yourself: "What department would handle this in a real studio?"
 | `/team-polish` | Orchestrate full polish team pipeline |
 | `/team-audio` | Orchestrate full audio team pipeline |
 | `/team-level` | Orchestrate full level creation pipeline |
-| `/team-live-ops` | Orchestrate live-ops team for seasons, events, and post-launch content |
 | `/team-qa` | Orchestrate full QA team cycle — test plan, test cases, smoke check, sign-off |
 | `/qa-plan` | Generate a QA test plan for a sprint or feature |
 | `/bug-triage` | Re-prioritize open bugs, assign to sprints, surface systemic trends |

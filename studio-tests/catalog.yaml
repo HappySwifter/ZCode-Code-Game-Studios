@@ -279,8 +279,6 @@ skills:
     priority: medium
     category: team
 
-  - name: team-live-ops
-    spec: studio-tests/skills/team/team-live-ops.md
     last_static: ""
     last_static_result: ""
     last_spec: ""
@@ -665,8 +663,6 @@ skills:
     priority: low
     category: utility
 
-  - name: localize
-    spec: studio-tests/skills/utility/localize.md
     last_static: ""
     last_static_result: ""
     last_spec: ""
@@ -959,8 +955,6 @@ agents:
     last_category_result: ""
     category: specialist
 
-  - name: network-programmer
-    spec: studio-tests/agents/specialists/network-programmer.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
@@ -1147,24 +1141,18 @@ agents:
     last_category_result: ""
     category: operations
 
-  - name: live-ops-designer
-    spec: studio-tests/agents/operations/live-ops-designer.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
     last_category_result: ""
     category: operations
 
-  - name: community-manager
-    spec: studio-tests/agents/operations/community-manager.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
     last_category_result: ""
     category: operations
 
-  - name: analytics-engineer
-    spec: studio-tests/agents/operations/analytics-engineer.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
@@ -1179,8 +1167,6 @@ agents:
     last_category_result: ""
     category: operations
 
-  - name: localization-lead
-    spec: studio-tests/agents/operations/localization-lead.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""

@@ -399,7 +399,7 @@ phases:
         name: "Team Orchestration (optional)"
         required: false
         repeatable: true
-        description: "Coordinate multiple agents on a complex feature. Use: /team-combat, /team-narrative, /team-ui, /team-audio, /team-level, /team-live-ops, /team-qa. Run when a feature spans multiple agent domains."
+        description: "Coordinate multiple agents on a complex feature. Use: /team-combat, /team-narrative, /team-ui, /team-audio, /team-level, /team-qa. Run when a feature spans multiple agent domains."
 
       - id: scope-check
         name: "Scope Check"
@@ -463,12 +463,6 @@ phases:
         artifact:
           glob: "production/security/security-audit-*.md"
         description: "The Polish -> Release gate reads the newest `full`-scope report (plus any later `quick` re-run) at standard and full: no open CRITICAL or HIGH finding"
-
-      - id: localize-qa
-        name: "Localization QA"
-        command: /localize
-        required: false
-        description: "Run `/localize qa` for every language you ship; at full the release gate needs PASS or PASS WITH CONDITIONS for each (recommended at standard, dropped at minimal)"
 
       - id: release-checklist
         name: "Release Checklist"

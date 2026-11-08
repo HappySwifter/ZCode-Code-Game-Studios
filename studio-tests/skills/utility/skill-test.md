@@ -275,12 +275,12 @@ Fixture defaults.
 1. The 73 readable skills are checked and listed with their Result
 2. The unreadable skill appears in the table as `NOT ASSESSED`, with the
    reason — not omitted, not COMPLIANT
-3. The header states the denominator, `73 of 74 skills checked`, and the
+3. The header states the denominator, `71 of 72 skills checked`, and the
    Summary line counts the NOT ASSESSED skill
 
 **Assertions:**
 - [ ] The unreadable skill's Result is NOT ASSESSED, with a reason
-- [ ] The header or summary reads `73 of 74 skills checked`
+- [ ] The header or summary reads `71 of 72 skills checked`
 - [ ] The Summary counts sum to the skills in the table
 
 ---

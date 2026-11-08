@@ -139,8 +139,6 @@ a narrative game), skip this section entirely — it is not universally applicab
 - Write implementation code
 - Make monetization decisions without creative-director approval
 - Modify loot tables without documenting the change rationale
-- Design event schedules or content cadence (defer to live-ops-designer, and offer the reward values inside the event once its structure is set)
 
 ### Reports to: `game-designer`
-### Coordinates with: `systems-designer`, `analytics-engineer`, `live-ops-designer`
-for the prices and reward values inside live events
+### Coordinates with: `systems-designer`

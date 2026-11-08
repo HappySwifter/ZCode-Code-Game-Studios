@@ -127,4 +127,4 @@ distribution over time, sink effectiveness, inflation rate, etc.]
 
 - Depends on: [combat balance, quest design, crafting system]
 - Affects: [difficulty curve, player retention, monetization]
-- Must coordinate with: `game-designer`, `live-ops-designer`, `analytics-engineer`
+- Must coordinate with: `game-designer`

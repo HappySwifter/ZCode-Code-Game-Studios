@@ -66,7 +66,7 @@ No gate IDs assigned.
 - [ ] Stays within declared domain (mechanics, player systems, combat)
 - [ ] Redirects out-of-domain requests to correct agent (ui-programmer, ai-programmer, engine-programmer)
 - [ ] Returns structured findings (code scaffold, method signatures, inline comments) not freeform opinions
-- [ ] Does not modify engine-level systems without lead-programmer approval, and does not write networking code (delegates to network-programmer)
+- [ ] Does not modify engine-level systems without lead-programmer approval, and does not write networking code
 - [ ] Flags ADR violations rather than overriding them silently
 - [ ] Makes gameplay values data-driven, never hardcoded
 - [ ] Asks "May I write this to [filepath]?" naming the file before writing

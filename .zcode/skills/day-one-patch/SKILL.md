@@ -220,7 +220,7 @@ See: `production/releases/rollback-plan-[version].md`
 
 ## Player-Facing Patch Notes
 
-[Draft for community-manager to review before publishing]
+[Draft for review before publishing]
 
 [list player-facing changes in plain language]
 ```

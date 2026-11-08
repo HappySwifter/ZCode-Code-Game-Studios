@@ -4,9 +4,8 @@
 
 Orchestrates the release team through a 7-phase pipeline from release candidate to
 deployment and post-release monitoring. Coordinates release-manager, qa-lead,
-devops-engineer, producer, security-engineer (required for online/multiplayer/player
-data), network-programmer (required for multiplayer), analytics-engineer,
-localization-lead, performance-analyst and community-manager. Phase 0 resolves
+devops-engineer, producer, security-engineer (required for online/player
+data), performance-analyst. Phase 0 resolves
 `review_mode`, `automation`, `team.size`, `workflow` and `project.stage`.
 `/gate-check release` is the readiness gate that must pass before a release, so
 when `project.stage` is not `Release` the skill stops before Phase 1, spawns
@@ -36,10 +35,10 @@ Closes with a post-release monitoring plan.
 - [ ] qa-lead checks open bugs at the release gate's thresholds for the resolved `workflow`: S1 at every tier, S2 and S3 too at `full`
 - [ ] A "phase gate" is a decision point the pipeline itself lists, whatever the `automation` mode; no clause says directors spawn at phase gates
 - [ ] Phase 2 is trunk-based: the release candidate is a commit on `main`, and a `release/*` branch is cut only when the release needs stabilising (freeze / certification), with every fix also landing on `main`
-- [ ] `/patch-notes` is run by release-manager in Phase 6, and community-manager writes the announcement from its output
+- [ ] `/patch-notes` is run by release-manager in Phase 6, and the announcement is written from its output
 - [ ] Uses `AskUserQuestion` at phase transitions requiring user approval before proceeding
 - [ ] Phase 0 resolves `team.size`, and the skill requires a one-line active-set announcement before Phase 1
-- [ ] Phase 3 agents (qa-lead, devops-engineer, and optionally security-engineer, network-programmer) are explicitly stated to run in parallel
+- [ ] Phase 3 agents (qa-lead, devops-engineer, and optionally security-engineer) are explicitly stated to run in parallel
 - [ ] Phase 6 (Deployment) is conditional on a GO decision from Phase 5 and on an explicit `AskUserQuestion` approval regardless of `modes.automation`
 - [ ] security-engineer is described as conditional on `platform.online` / `platform.multiplayer` and player data — not always spawned, and an absent key is asked about rather than read as `false`
 
@@ -73,12 +72,12 @@ Fixture defaults.
 1. The stage check passes (`project.stage: Release`); before any spawn, one line announces the active set for `team.size: studio`
 2. Phase 1: Spawns `producer` via Agent; confirms all milestone acceptance criteria met; identifies any deferred scope; writes `production/releases/release-plan-v1.0.0.md`; AskUserQuestion: user approves before Phase 2
 3. Phase 2: Spawns `release-manager` via Agent; bumps version numbers on `main`, and that commit is the release candidate; finds no release checklist from Polish, so invokes `/release-checklist` (`production/releases/release-checklist-v1.0.0.md`); cuts no `release/*` branch, since nothing needs stabilising; AskUserQuestion: user approves before Phase 3
-4. Phase 3 (parallel): Issues Agent calls simultaneously for `qa-lead` (regression suite, critical path sign-off, `production/releases/qa-gate-v1.0.0.md`) and `devops-engineer` (build artifacts, CI verification, `production/releases/build-v1.0.0.md`); security-engineer is NOT spawned (`platform.online: false`, no player data) and network-programmer is NOT spawned (`platform.multiplayer: false`), and the Phase 3 output names each skip with its reason
-5. Phase 4: localization-lead verifies all strings are translated (`production/releases/localization-signoff-v1.0.0.md`); performance-analyst benchmarks the release build (`performance-signoff-v1.0.0.md`); `analytics-engineer` verifies telemetry fires correctly on the release build (`analytics-signoff-v1.0.0.md`) — each agent writes its own file
+4. Phase 3 (parallel): Issues Agent calls simultaneously for `qa-lead` (regression suite, critical path sign-off, `production/releases/qa-gate-v1.0.0.md`) and `devops-engineer` (build artifacts, CI verification, `production/releases/build-v1.0.0.md`); security-engineer is NOT spawned (`platform.online: false`, no player data), and the Phase 3 output names each skip with its reason
+5. Phase 4: performance-analyst benchmarks the release build (`production/releases/performance-signoff-v1.0.0.md`) and writes its sign-off file; the translation review runs inside the skill
 6. Phase 5: Spawns `producer` via Agent; collects sign-offs from qa-lead, release-manager, devops-engineer and technical-director; no open blocking issues; producer declares GO (`production/releases/go-no-go-v1.0.0.md`)
 7. Phase 6: `AskUserQuestion` "Producer verdict is GO. Execute Phase 6 — tag, deploy to staging, deploy to production?" with [A] Yes, deploy / [B] Staging only — hold production / [C] Stop here; user selects [A]
-8. Phase 6: release-manager + devops-engineer tag the release, finalize the changelog via `/changelog`, deploy to staging, then production; in parallel release-manager finalizes patch notes via `/patch-notes v1.0.0` (`docs/patch-notes/v1.0.0.md`), and `community-manager` writes the launch announcement from them (`production/releases/announcement-v1.0.0.md`)
-9. Phase 7: release-manager generates the release report (`production/releases/release-report-v1.0.0.md`); producer updates milestone tracking; qa-lead monitors for regressions; community-manager publishes; analytics-engineer confirms live dashboards healthy
+8. Phase 6: release-manager + devops-engineer tag the release, finalize the changelog via `/changelog`, deploy to staging, then production; in parallel release-manager finalizes patch notes via `/patch-notes v1.0.0` (`docs/patch-notes/v1.0.0.md`), and the launch announcement is written from them (`production/releases/announcement-v1.0.0.md`)
+9. Phase 7: release-manager generates the release report (`production/releases/release-report-v1.0.0.md`); producer updates milestone tracking; qa-lead monitors for regressions; the announcement is published
 10. Next steps: monitor dashboards for 48 hours; `/retrospective` if significant issues occurred
 11. Verdict: COMPLETE — release executed and deployed
 
@@ -91,7 +90,7 @@ Fixture defaults.
 - [ ] Phase 5 producer collects sign-offs from qa-lead, release-manager, devops-engineer and technical-director before declaring GO
 - [ ] Phase 6 deployment only begins after the user picks [A] in the Phase 6 `AskUserQuestion`
 - [ ] `/changelog` is invoked by release-manager in Phase 6 (not written directly)
-- [ ] `/patch-notes v1.0.0` is invoked by release-manager in Phase 6, and community-manager writes the announcement from its output — community-manager is never asked to run `/patch-notes`
+- [ ] `/patch-notes v1.0.0` is invoked by release-manager in Phase 6, and the announcement is written from its output — the announcement step is never asked to run `/patch-notes`
 - [ ] Phase 7 monitoring plan includes a 48-hour post-release monitoring commitment
 - [ ] No stop and no override question at the stage check, because `project.stage` reads `Release`; the skill writes neither `project.stage` nor `production/stage.txt`, and no post-launch stage value is invented
 - [ ] Verdict: COMPLETE appears in the final output
@@ -115,7 +114,7 @@ Fixture defaults.
 4. Phase 5: Spawns `producer` via Agent; producer receives qa-lead's NOT PASSED verdict; producer declares NO-GO with rationale: "S1 bug [ID] is open and unresolved. Releasing is not safe."
 5. Orchestrator surfaces "PRODUCER: NO-GO — [rationale]" and uses `AskUserQuestion` with options: fix the blocker and re-run the affected phase, defer the release, or override NO-GO with documented rationale
 6. Phase 6 (Deployment) is SKIPPED entirely — no tagging, no deploy to staging, no deploy to production
-7. Neither Phase 6 copy step runs — release-manager does not run `/patch-notes` and community-manager is NOT spawned (no deployment to announce)
+7. Neither Phase 6 copy step runs — release-manager does not run `/patch-notes` and no announcement is written (no deployment to announce)
 8. Skill ends with a partial report summarizing what was completed (Phases 1–5) and what was skipped (Phase 6) and why
 9. Verdict: BLOCKED — release not deployed
 
@@ -123,7 +122,7 @@ Fixture defaults.
 - [ ] qa-lead S1 bug finding is surfaced to the user immediately after Phase 3 completes — not suppressed until Phase 5
 - [ ] producer's NO-GO decision explicitly references the S1 bug and the quality gate result
 - [ ] Phase 6 Deployment is completely skipped when producer declares NO-GO
-- [ ] No patch notes or launch announcement are produced on NO-GO — `/patch-notes` is not run and community-manager is NOT spawned
+- [ ] No patch notes or launch announcement are produced on NO-GO — `/patch-notes` is not run and no announcement is written
 - [ ] The partial report clearly states which phases completed and which were skipped, with reasons
 - [ ] Verdict: BLOCKED (not COMPLETE) when deployment is skipped due to NO-GO
 - [ ] AskUserQuestion offers the user resolution options (fix and re-run / defer / override with rationale)
@@ -143,19 +142,17 @@ Fixture defaults.
 
 **Expected behavior:**
 1. Phases 1–2 complete normally
-2. Phase 3 (parallel): Orchestrator reads `platform.multiplayer: true` and `platform.online: true` from `project.yaml` and notes the stored player data; issues Agent calls simultaneously for `qa-lead`, `devops-engineer`, `security-engineer` and `network-programmer`
+2. Phase 3 (parallel): Orchestrator reads `platform.multiplayer: true` and `platform.online: true` from `project.yaml` and notes the stored player data; issues Agent calls simultaneously for `qa-lead`, `devops-engineer` and `security-engineer`
 3. security-engineer conducts pre-release security audit: reviews authentication flows, anti-cheat presence, data privacy compliance; returns sign-off
-4. network-programmer verifies lag compensation, reconnect handling, and bandwidth under load; returns sign-off
-5. All four Phase 3 agents complete; their results are collected before Phase 4 begins
-6. Phase 5: producer collects sign-offs from qa-lead, release-manager, devops-engineer, security-engineer, network-programmer and technical-director before making the go/no-go call
-7. Remaining phases proceed normally to COMPLETE
+4. All three Phase 3 agents complete; their results are collected before Phase 4 begins
+5. Phase 5: producer collects sign-offs from qa-lead, release-manager, devops-engineer, security-engineer and technical-director before making the go/no-go call
+6. Remaining phases proceed normally to COMPLETE
 
 **Assertions:**
 - [ ] security-engineer IS spawned in Phase 3 when the game has online features, multiplayer, or player data — this is not skipped
-- [ ] network-programmer IS spawned in Phase 3 when the game has multiplayer
-- [ ] All four Phase 3 Agent calls (qa-lead, devops-engineer, security-engineer, network-programmer) are issued simultaneously
+- [ ] All three Phase 3 Agent calls (qa-lead, devops-engineer, security-engineer) are issued simultaneously
 - [ ] security-engineer audit covers authentication, anti-cheat, and data privacy compliance
-- [ ] Phase 5 producer sign-off collection includes security-engineer and network-programmer alongside qa-lead, release-manager, devops-engineer and technical-director
+- [ ] Phase 5 producer sign-off collection includes security-engineer alongside qa-lead, release-manager, devops-engineer and technical-director
 - [ ] Phase 6 deployment does not begin until security-engineer has signed off
 - [ ] Skill does NOT treat security-engineer as optional for a game with player data
 
@@ -168,14 +165,14 @@ Fixture defaults.
 - `project.yaml` sets `platform.online: false` and `platform.multiplayer: false`; no player data
 - Release candidate exists for v1.2.0
 - Phase 3 (qa-lead, devops-engineer) complete with clean sign-offs
-- Phase 4: localization-lead finds 47 untranslated strings in the French locale (a supported language) and returns it as a BLOCKED/CONCERNS item
+- Phase 4: the skill's translation review finds 47 untranslated strings in the French locale (a supported language) and surfaces it as a BLOCKED/CONCERNS item
 - producer judges the miss release-blocking and declares NO-GO
 
 **Input:** `/team-release v1.2.0`
 
 **Expected behavior:**
 1. Phases 1–3 complete with clean sign-offs
-2. Phase 4: the translation check is delegated to localization-lead (active at `studio`); its sign-off is written to `production/releases/localization-signoff-v1.2.0.md` and the orchestrator confirms the file exists
+2. Phase 4: the translation review runs inside the skill; the finding is recorded under `production/releases/` and the orchestrator confirms it before the go/no-go
 3. At the Phase 4 → 5 transition the orchestrator writes the localization finding in conversation and captures the decision via `AskUserQuestion` — it does not auto-advance
 4. Phase 5: producer evaluates the untranslated strings as an open issue and declares NO-GO
 5. Orchestrator surfaces "PRODUCER: NO-GO — [rationale naming the untranslated French strings]" and offers via `AskUserQuestion`: fix the blocker and re-run the affected phase / defer the release / override NO-GO with documented rationale
@@ -183,7 +180,7 @@ Fixture defaults.
 7. Verdict: BLOCKED — release not deployed
 
 **Assertions:**
-- [ ] Phase 4 delegates the translation check to localization-lead when it is in the active set
+- [ ] Phase 4 runs a translation review and surfaces its findings before the go/no-go
 - [ ] The localization finding is presented at the Phase 4 → 5 transition via `AskUserQuestion` before the go/no-go runs
 - [ ] The producer's NO-GO rationale names the untranslated-strings issue
 - [ ] The resolution options include re-running the affected phase — the skill does not require restarting from Phase 1

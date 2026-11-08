@@ -120,7 +120,6 @@
 | `/prototype` | Concept prototype — throwaway build right after brainstorm to validate core idea (Phase 1) |
 | `/vertical-slice` | Pre-Production validation — production-quality end-to-end build before committing to Production (Phase 4) |
 | `/onboard` | Generate contextual onboarding document for a new contributor or agent |
-| `/localize` | Localization workflow: string extraction, validation, translation readiness |
 
 ## Team Orchestration
 
@@ -135,7 +134,6 @@ Coordinate multiple agents on a single feature area:
 | `/team-polish` | performance-analyst + technical-artist + sound-designer + qa-tester |
 | `/team-audio` | audio-director + sound-designer + technical-artist + gameplay-programmer |
 | `/team-level` | level-designer + narrative-director + world-builder + art-director + systems-designer + qa-tester |
-| `/team-live-ops` | live-ops-designer + economy-designer + community-manager + analytics-engineer |
 | `/team-qa` | qa-lead + qa-tester + gameplay-programmer + producer |
 
 ## Overlap with ZCode's bundled skills

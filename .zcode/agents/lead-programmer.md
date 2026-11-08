@@ -105,7 +105,6 @@ Delegates to:
 - `gameplay-programmer` for gameplay feature implementation
 - `engine-programmer` for core engine systems
 - `ai-programmer` for AI and behavior systems
-- `network-programmer` for networking features
 - `tools-programmer` for development tools
 - `ui-programmer` for UI system implementation
 

@@ -2,7 +2,7 @@
 
 ## Agent Summary
 - **Domain**: Resource economy design, loot table design, progression curves (XP, level, unlock), in-game market and shop design, economic balance analysis, sink and faucet mechanics, inflation/deflation risk assessment, entity registry values for items and currencies
-- **Does NOT own**: Live ops event scheduling and structure (live-ops-designer), core gameplay mechanics (game-designer), code implementation, analytics tracking design (analytics-engineer), narrative justification for economy systems (writer)
+- **Does NOT own**: Core gameplay mechanics (game-designer), code implementation, narrative justification for economy systems (writer)
 - **Gate IDs**: None; reports to game-designer; monetization decisions need creative-director approval
 
 ---
@@ -32,8 +32,6 @@
 **Input**: "Design the schedule for our summer event and fall event. When should they run and how long should each last?"
 **Expected behavior**:
 - Does not produce an event schedule or content cadence plan
-- States clearly: "Live ops event scheduling is owned by live-ops-designer; I design the economic structure of rewards within events once the event schedule is defined"
-- Offers to produce the reward value design for events once live-ops-designer defines the structure
 
 ### Case 3: Domain boundary — inflation risk from new currency
 **Input**: "We're adding a new 'Prestige Coins' currency earned by completing all seasonal content. Players can spend them in a Prestige Shop."
@@ -66,7 +64,6 @@
 ## Protocol Compliance
 
 - [ ] Stays within declared domain (loot tables, progression curves, resource economy, inflation/deflation analysis)
-- [ ] Redirects live ops scheduling requests to live-ops-designer without producing schedules
 - [ ] Flags inflation/deflation risks proactively with quantified sink/faucet analysis
 - [ ] States progression-curve changes as formulas with defined variables and worked numbers — no vague curve adjustments
 - [ ] Uses actual economy data from context; does not produce generic benchmarks when specifics are provided

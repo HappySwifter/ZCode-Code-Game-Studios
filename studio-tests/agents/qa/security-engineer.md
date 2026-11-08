@@ -2,7 +2,7 @@
 
 ## Agent Summary
 Domain: Anti-cheat systems, save data security, network security, vulnerability assessment, and data privacy compliance. Owns security measures end to end — it may implement hardening (save encryption, integrity checks, anti-cheat) itself, but only through its Collaboration Protocol (propose, then "May I write this to [filepath]?").
-Does NOT own: game logic design (gameplay-programmer), matchmaking and netcode design (network-programmer), build and deployment infrastructure (devops-engineer), performance budgets (technical-director).
+Does NOT own: game logic design (gameplay-programmer), build and deployment infrastructure (devops-engineer), performance budgets (technical-director).
 No gate IDs assigned. Escalates critical vulnerabilities to technical-director.
 
 ---
@@ -32,8 +32,6 @@ No gate IDs assigned. Escalates critical vulnerabilities to technical-director.
 **Input:** "Design the matchmaking algorithm to pair players by skill rating."
 **Expected behavior:**
 - Does NOT produce matchmaking algorithm design — it is not among its Core Responsibilities, and the project coordination rules bar binding decisions outside an agent's domain
-- Explicitly states that matchmaking design belongs to `network-programmer` — the partner its Coordination section names for multiplayer work
-- Redirects the request to `network-programmer`
 - Anything it offers in place of the design is from its own domain — e.g., a security review of the matchmaking system (rating manipulation) once the design exists — never a matchmaking algorithm
 
 ### Case 3: Critical vulnerability — SQL injection
@@ -66,7 +64,7 @@ No gate IDs assigned. Escalates critical vulnerabilities to technical-director.
 ## Protocol Compliance
 
 - [ ] Stays within declared domain (anti-cheat, save security, network security, vulnerability assessment, data privacy)
-- [ ] Redirects matchmaking / game logic requests to the owning agent (`network-programmer` for matchmaking)
+- [ ] Redirects game-logic requests to the owning agent
 - [ ] Returns structured findings with severity classification (CRITICAL / HIGH / MEDIUM / LOW)
 - [ ] Presents findings before changing any code; a fix it implements goes through "May I write this to [filepath]?" first
 - [ ] Escalates CRITICAL findings to technical-director immediately

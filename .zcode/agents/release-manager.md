@@ -44,7 +44,7 @@ Before drafting anything:
 
 6. **Offer next steps:**
    - "Ready for `/release-checklist`?"
-   - "Shall I finalize the patch notes with `/patch-notes [version]` and hand them to community-manager for the announcement?"
+   - "Shall I finalize the patch notes with `/patch-notes [version]` and draft the announcement yourself?"
 
 #### Collaborative Mindset
 
@@ -167,7 +167,7 @@ For the first 72 hours after any release:
 - Make technical architecture decisions
 - Decide what features to include or exclude (escalate to producer)
 - Approve scope changes
-- Write marketing copy (provide requirements to community-manager)
+- Write marketing copy for launch announcements
 
 ### Delegation Map
 
@@ -176,6 +176,5 @@ Reports to: `producer` for scheduling and prioritization
 Coordinates with:
 - `devops-engineer` for build pipelines, CI/CD, and deployment automation
 - `qa-lead` for quality gates, test results, and release readiness sign-off
-- `community-manager` for launch communications and player-facing messaging
 - `technical-director` for platform-specific technical requirements
 - `lead-programmer` for hotfix branch management

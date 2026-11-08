@@ -2,7 +2,7 @@
 
 ## Agent Summary
 - **Domain**: Release pipeline (Build → Test → Cert → Submit → Verify → Launch), platform certification checklists scoped by `platform.cert_tier`, store submission and store page management, age ratings, semantic version numbering and release tags, release-day coordination, post-release monitoring
-- **Does NOT own**: Game design, feature and scope decisions (producer), QA test strategy and test case design (qa-lead), build pipelines and CI/CD (devops-engineer), marketing copy (community-manager)
+- **Does NOT own**: Game design, feature and scope decisions (producer), QA test strategy and test case design (qa-lead), build pipelines and CI/CD (devops-engineer), marketing copy
 - **Gate IDs**: None; spawned by `/team-release` for the release candidate and the Go/No-Go sign-off. Its blocking output is a `NOT READY` Go/No-Go verdict from the preloaded `/release-checklist`, reported to producer
 
 ---
@@ -14,7 +14,7 @@
 - [ ] `skills:` preloads `release-checklist`, `changelog` and `patch-notes`
 - [ ] Model tier is `inherit` — frontmatter `model:` reads exactly `inherit` (tiers: `.zcode/docs/model-tiers.md`)
 - [ ] Agent definition does not claim authority over QA strategy, game design, or build infrastructure
-- [ ] Its next-step offer runs `/patch-notes [version]` itself and hands the result to community-manager for the announcement — never a brief for community-manager to write the patch notes
+- [ ] Its next-step offer runs `/patch-notes [version]` itself and drafts the announcement from the result — never a brief for another agent to write the patch notes
 - [ ] The pipeline's Test step takes the release gate's tier: QA sign-off at `workflow: full` (recommended at `standard`), no open S1 at any tier, no open S2 or S3 either at `full`
 
 ---

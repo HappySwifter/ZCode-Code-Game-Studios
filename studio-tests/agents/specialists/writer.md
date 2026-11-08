@@ -2,7 +2,7 @@
 
 ## Agent Summary
 - **Domain**: In-game written content — NPC dialogue (including branching trees), lore codex entries, item and ability descriptions, environmental text (signs, books, notes), quest text, tutorial text, in-world written documents
-- **Does NOT own**: Story architecture and narrative structure (narrative-director), world lore and world rules (world-builder), UX flows and information architecture (ux-designer; it writes UI microcopy, not the UX around it), patch notes (community-manager)
+- **Does NOT own**: Story architecture and narrative structure (narrative-director), world lore and world rules (world-builder), UX flows and information architecture (ux-designer; it writes UI microcopy, not the UX around it), patch notes
 - **Gate IDs**: None; flags lore inconsistencies to narrative-director rather than resolving them autonomously
 
 ---

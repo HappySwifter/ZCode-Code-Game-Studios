@@ -41,7 +41,7 @@ still decides who runs it — see Phase 4).
 
 **`team.size`**: which agents are active (orthogonal to review_mode gate-depth and workflow docs).
 - **`individual`** (default): `writer` only; `narrative-director` invoked only on an explicit pillar conflict. Other agents consulted via the writer, not spawned separately.
-- **`small`**: `narrative-director` + `writer`, plus `localization-lead` and `world-builder` when `review_mode` is `full` (at `lean` and `solo` they are consulted through the writer).
+- **`small`**: `narrative-director` + `writer`, plus `world-builder` when `review_mode` is `full` (at `lean` and `solo` they are consulted through the writer).
 - **`studio`**: all six Team Composition agents, whatever the `review_mode` (the full pipeline as documented).
 A non-core agent needed at `individual` routes through the nearest active core agent with an informational note. **"Phase gate" means any phase that ends in an `AskUserQuestion` decision point this pipeline itself lists** — a transition under Decision Points above, or a **Gate** step written into the pipeline below — **whatever the `automation` mode.** `guided` and `autonomous` change how a gate is passed (it auto-advances, or is recorded with `log_decision`), not whether it is one, so bounded-exception condition (3) below holds at it in every mode. An agent restricted to "phase gates only" is spawned at those points and no others. This active-set scoping applies throughout the pipeline below: any phase that names an agent outside the active set routes through the nearest core agent rather than spawning it.
 
@@ -76,7 +76,6 @@ enforced.**
 - **world-builder** — World rules, faction design, history, geography, environmental storytelling
 - **art-director** — Character visual design, environmental visual storytelling, cutscene/cinematic tone
 - **level-designer** — Level layouts that serve the narrative, pacing, environmental storytelling beats
-- **localization-lead** — Localization readiness — flags non-localizable strings, cultural assumptions, and i18n gaps
 
 ## How to Delegate
 
@@ -86,7 +85,6 @@ Use the `Agent` tool to spawn each team member as a subagent:
 - `subagent_type: world-builder` — World rules, faction design, history, geography
 - `subagent_type: art-director` — Character visual profiles, environmental visual storytelling, cinematic tone
 - `subagent_type: level-designer` — Level layouts that serve the narrative, pacing
-- `subagent_type: localization-lead` — Localization readiness — flags non-localizable strings, cultural assumptions, and i18n gaps
 
 **Read the canon first.** Before Phase 1, read the shared inputs that exist — the narrative bible or tone guide, the character and faction files under `design/narrative/`, and the world rules. Never tell an agent to invent canon: if none exists, say so and ask the user before any drafting.
 
@@ -106,10 +104,9 @@ cover, so **you** write those after one approval (see "Write the finals"):
 | writer | `production/narrative/[content-slug]/dialogue-[scene-slug].md` | `design/narrative/dialogue/[scene-slug].md` |
 | art-director | `production/narrative/[content-slug]/visual-direction.md` | `design/narrative/[content-slug]-visual-direction.md` |
 | level-designer | `production/narrative/[content-slug]/level-integration.md` | `design/narrative/[content-slug]-level-integration.md` |
-| localization-lead | `production/narrative/[content-slug]/i18n-review.md` | stays in `production/` — a review, not a design document |
 
 > **The final destination is not a free choice.** `design/narrative/` is read by
-> `/asset-spec`, `/design-review`, `/localize`, `/onboard`,
+> `/asset-spec`, `/design-review`, `/onboard`,
 > `/project-stage-detect`, `/team-level` and the `cd-narrative` director gate.
 > An artifact written anywhere else is invisible to all seven.
 >
@@ -178,7 +175,6 @@ self-check is not the gate's verdict, and the report must not present it as one.
 ### Phase 5: Polish (parallel)
 Delegate in parallel — issue every `Agent` call before waiting for any result:
 - **writer**: Final self-review — verify no line exceeds dialogue box constraints, all text uses string keys (not raw strings), placeholder variable names are consistent
-- **localization-lead**: Validate i18n compliance — check string key naming conventions, flag any strings with hardcoded formatting that won't survive translation, verify character limit headroom for languages that expand (German/Finnish typically +30%), confirm no cultural assumptions in text that would need locale-specific variants
 - **world-builder**: Finalize canon levels for all new lore entries
 
 ### Write the finals
@@ -236,5 +232,4 @@ Verdict: **BLOCKED** — [reason]
 ## Next Steps
 
 - Run `/design-review` on the narrative documents for consistency validation.
-- Run `/localize extract` to extract new strings for translation after dialogue is finalized.
 - Run `/dev-story` to implement dialogue triggers and narrative events in-engine.

@@ -2,7 +2,7 @@
 
 ## Agent Summary
 - **Domain**: CI/CD pipeline configuration, build scripts, version control workflow and branching strategy (trunk-based, per `AGENTS.md`), release tagging scheme, automated test integration in CI, artifact management, environment management
-- **Does NOT own**: Game code or assets, technology stack decisions and server infrastructure changes (technical-director approves), security audits (security-engineer), QA test strategy (qa-lead), game networking logic (network-programmer)
+- **Does NOT own**: Game code or assets, technology stack decisions and server infrastructure changes (technical-director approves), security audits (security-engineer), QA test strategy (qa-lead), game networking logic
 - **Gate IDs**: None; reports to technical-director and escalates build-time and infrastructure concerns there
 
 ---
@@ -32,7 +32,7 @@
 **Input**: "Implement the server-authoritative movement system for our multiplayer game."
 **Expected behavior**:
 - Does not produce game networking or movement code — "Modify game code or assets" is on its "What This Agent Must NOT Do" list
-- Says the work belongs to a programmer and names who takes it: `lead-programmer` or `technical-director`, the agents its file names (naming `network-programmer`, the owner of netcode, also satisfies this)
+- Says the work belongs to a programmer and names who takes it: `lead-programmer` or `technical-director`, the agents its file names
 - States what it can do instead: the infrastructure that builds, tests, and deploys the game once the netcode exists
 - Does not conflate CI pipeline configuration with in-game network architecture
 

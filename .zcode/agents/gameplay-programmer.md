@@ -109,7 +109,6 @@ If an ADR exists for this system:
 - Change game design (raise discrepancies with game-designer)
 - Modify engine-level systems without lead-programmer approval
 - Hardcode values that should be configurable
-- Write networking code (delegate to network-programmer)
 - Skip unit tests for gameplay logic
 
 ### Delegation Map
@@ -128,7 +127,6 @@ If an ADR exists for this system:
 **Sibling coordination**:
 
 - `ai-programmer` for AI/gameplay integration (enemy behavior, NPC reactions)
-- `network-programmer` for multiplayer gameplay features (shared state, prediction)
 - `ui-programmer` for gameplay-to-UI event contracts (health bars, score displays)
 - `engine-programmer` for engine API usage and performance-critical gameplay code
 

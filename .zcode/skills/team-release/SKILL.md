@@ -57,8 +57,8 @@ below), and the agents that work at them are team members, not director gates.
 
 **`team.size`**: which agents are active (orthogonal to review_mode gate-depth and workflow docs).
 - **`individual`** (default): `release-manager` only. Other agents consulted via the release-manager, not spawned separately.
-- **`small`**: + `producer` + `devops-engineer` + `qa-lead` + `community-manager`.
-- **`studio`**: + `security-engineer` + `analytics-engineer` + `localization-lead` + `performance-analyst`, and `network-programmer` when the game is multiplayer (the full pipeline as documented).
+- **`small`**: + `producer` + `devops-engineer` + `qa-lead`.
+- **`studio`**: + `security-engineer` + `performance-analyst` (the full pipeline as documented).
 A non-core agent needed at `individual` routes through the nearest active core agent with an informational note. **"Phase gate" means any phase that ends in an `AskUserQuestion` decision point this pipeline itself lists** — a transition under Decision Points above, the stage check, or the Phase 6 deploy question — **whatever the `automation` mode.** `guided` and `autonomous` change how a gate is passed (it auto-advances, or is recorded with `log_decision`), not whether it is one, so bounded-exception condition (3) below holds at it in every mode. An agent restricted to "phase gates only" is spawned at those points and no others. This active-set scoping applies throughout the pipeline below: any phase that names an agent outside the active set routes through the nearest core agent rather than spawning it.
 
 **Announce the active set before Phase 1 — never let the collapse be silent.**
@@ -91,11 +91,7 @@ enforced.**
 - **qa-lead** — Test sign-off, regression suite, release quality gate
 - **devops-engineer** — Build pipeline, artifacts, deployment automation
 - **security-engineer** — Pre-release security audit (invoke if game has online/multiplayer features or player data)
-- **network-programmer** — Netcode stability sign-off (invoke if game has multiplayer)
-- **analytics-engineer** — Verify telemetry events fire correctly and dashboards are live
-- **localization-lead** — Verify every shipped string is translated
 - **performance-analyst** — Benchmark the release build against its performance targets
-- **community-manager** — Launch announcement and player-facing messaging, written from the patch notes
 - **producer** — Go/no-go decision, stakeholder communication, scheduling
 
 ## How to Delegate
@@ -105,11 +101,7 @@ Use the `Agent` tool to spawn each team member as a subagent:
 - `subagent_type: qa-lead` — Test sign-off, regression suite, release quality gate
 - `subagent_type: devops-engineer` — Build pipeline, artifacts, deployment automation
 - `subagent_type: security-engineer` — Security audit for online/multiplayer/data features
-- `subagent_type: analytics-engineer` — Telemetry event verification and dashboard readiness
-- `subagent_type: community-manager` — Launch communication, written from the patch notes
 - `subagent_type: producer` — Go/no-go decision, stakeholder communication
-- `subagent_type: network-programmer` — Netcode stability sign-off (invoke if game has multiplayer)
-- `subagent_type: localization-lead` — Translation completeness sign-off (Phase 4)
 - `subagent_type: performance-analyst` — Performance benchmarks against targets (Phase 4)
 
 **Brief each agent — do not dump context.** Read the shared inputs **once** and pass a distilled brief inline: the lines each agent actually needs, never a file path for a document you have already read (an agent handed a path re-reads the whole file). Pass a path only for a document you have not read and only that agent needs.
@@ -127,16 +119,12 @@ agent standing in for one outside the active set writes that agent's file:
 | 3 qa-lead | `production/releases/qa-gate-[version].md` | this skill |
 | 3 devops-engineer | `production/releases/build-[version].md` | this skill |
 | 3 security-engineer | `production/releases/security-signoff-[version].md` | this skill |
-| 3 network-programmer | `production/releases/netcode-signoff-[version].md` | this skill |
-| 4 localization-lead | `production/releases/localization-signoff-[version].md` | this skill |
 | 4 performance-analyst | `production/releases/performance-signoff-[version].md` | this skill |
-| 4 analytics-engineer | `production/releases/analytics-signoff-[version].md` | this skill |
 | 5 go/no-go | `production/releases/go-no-go-[version].md` | this skill |
 | 6 release-manager | `docs/patch-notes/[version].md` | `/patch-notes` |
-| 6 community-manager | `production/releases/announcement-[version].md` | this skill |
 | 7 release-manager | `production/releases/release-report-[version].md` | this skill |
 
-> **Every one of those thirteen outputs needs a stated destination.**
+> **Every one of those nine outputs needs a stated destination.**
 > `production/releases/` is where `/release-checklist` already writes, and
 > `docs/patch-notes/[version].md` is where `/patch-notes` already writes, so the
 > release record lands in one place regardless of which skill produced it.
@@ -170,15 +158,12 @@ Delegate in parallel:
 - **qa-lead**: Execute full regression test suite. Test all critical paths. Verify no open bugs at the severities `/gate-check release` blocks for this `workflow`: S1 at every tier, S2 and S3 too at `full`. Sign off on quality.
 - **devops-engineer**: Build release artifacts for all target platforms. Verify builds are clean and reproducible. Run automated tests in CI.
 - **security-engineer** *(if game has online features, multiplayer, or player data)*: Conduct pre-release security audit. Review authentication, anti-cheat, data privacy compliance. Sign off on security posture.
-- **network-programmer** *(if game has multiplayer)*: Sign off on netcode stability. Verify lag compensation, reconnect handling, and bandwidth usage under load.
 
 When either agent is in the active set, decide its condition from `platform.online` and `platform.multiplayer` in `project.yaml`, plus whether the game stores player data. A key that is absent is not a `false`: ask the user rather than assume an offline game. An agent skipped on these grounds says so by name in the Phase 3 output — e.g. `security-engineer: not spawned — platform.online: false, platform.multiplayer: false, no player data`.
 
 ### Phase 4: Localization, Performance, and Analytics
 Delegate (can run in parallel with Phase 3 if resources available):
-- Verify all strings are translated (delegate to **localization-lead** if available)
 - Run performance benchmarks against targets (delegate to **performance-analyst** if available)
-- **analytics-engineer**: Verify all telemetry events fire correctly on release build. Confirm dashboards are receiving data. Check that critical funnels (onboarding, progression, monetization if applicable) are instrumented.
 - Output: localization, performance, and analytics sign-off — one file per agent (table above)
 
 ### Phase 5: Go/No-Go
@@ -192,7 +177,6 @@ spawned, the go/no-go record says `technical-director sign-off: not run
 recorded as such and never counted as a sign-off.
 
 Delegate to **producer**, passing every sign-off collected so far:
-- Collect sign-off from: qa-lead, release-manager, devops-engineer, security-engineer (if spawned in Phase 3), network-programmer (if spawned in Phase 3), and technical-director (if spawned above)
 - Carry a stage-check override, if there was one, into the go/no-go record as its `Stage override:` line
 - Evaluate any open issues — are they blocking or can they ship?
 - Make the go/no-go call
@@ -204,7 +188,6 @@ Delegate to **producer**, passing every sign-off collected so far:
   - Fix the blocker and re-run the affected phase
   - Defer the release to a later date
   - Override NO-GO with documented rationale (user must provide written justification)
-- **Skip Phase 6 entirely** — do not tag, deploy to staging, deploy to production, or spawn community-manager.
 - Produce a partial report summarizing Phases 1–5 and what was skipped (Phase 6) and why.
 - Verdict: **BLOCKED** — release not deployed.
 
@@ -233,9 +216,7 @@ Only after explicit approval, delegate to **release-manager** + **devops-enginee
 - Human team action: Monitor dashboards and error rates for 48 hours post-release. Schedule a follow-up retrospective using `/retrospective` at the 48-hour mark.
 
 In parallel with deployment, delegate to **release-manager**:
-- Finalize the patch notes drafted in Polish using `/patch-notes [version]` — release-manager carries that skill and the Bash access its `git log` step needs; `community-manager` has neither
 
-Then hand those patch notes to **community-manager**:
 - Prepare launch announcement (store page updates, social media, community post)
 - Draft known issues post if any S3+ issues shipped
 - Output: all player-facing release communication, ready to publish on deploy confirmation
@@ -244,8 +225,6 @@ Then hand those patch notes to **community-manager**:
 - **release-manager**: Generate release report (what shipped, what was deferred, metrics)
 - **producer**: Update milestone tracking, communicate to stakeholders
 - **qa-lead**: Monitor incoming bug reports for regressions
-- **community-manager**: Publish all player-facing communication, monitor community sentiment
-- **analytics-engineer**: Confirm live dashboards are healthy; alert if any critical events are missing
 - Keep the 48-hour monitoring window from Phase 6: bugs, dashboards and community sentiment are watched for 48 hours after release (release-manager's own watch runs to its 72h report)
 - Schedule post-release retrospective if issues occurred
 

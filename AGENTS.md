@@ -1,10 +1,10 @@
 # ZCode Game Studios — Game Studio Agent Architecture
 
-Indie game development managed through 49 coordinated ZCode subagents.
+Indie game development managed through 44 coordinated ZCode subagents.
 Each agent owns a specific domain, enforcing separation of concerns and quality.
 
 > Ported from [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios)
-> (MIT). The studio hierarchy, 74 skills, rules and hooks are unchanged in
+> (MIT). The studio hierarchy, 72 skills, rules and hooks are unchanged in
 > substance; the wiring now targets ZCode — see `MIGRATION.md` for the full
 > mapping. Where older documents mention Claude Code behavior, this file and
 > `MIGRATION.md` are the authority on how it maps to ZCode.
