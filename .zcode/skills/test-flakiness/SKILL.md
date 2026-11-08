@@ -55,13 +55,6 @@ For Godot projects: GdUnit4 outputs XML results compatible with JUnit format,
 under `reports/` (its default report folder, `res://reports/`). Check `reports/`,
 and any `test-results/` you saved runs into, for `.xml` files.
 
-For Unity projects: game-ci test runner outputs NUnit XML to `test-results/`
-by default.
-
-For Unreal projects: automation logs go to `Saved/Logs/`. Grep for
-`Result={Success}` and `Result={Fail}` — each test prints
-`Test Completed. Result={<status>}`
-(`docs/engine-reference/unreal/current-best-practices.md`, "Command Line").
 
 ### Option B — Local log files
 
@@ -89,13 +82,6 @@ For each CI log or result file found, parse:
 - Grep for `<testcase name=` to get test names
 - Grep for `<failure` or `<error` to identify failures
 - Parse `classname` and `name` attributes for full test identifiers
-
-**NUnit XML format** (Unity — the file whose `<test-run>` element `/smoke-check`
-reads):
-- Each test is a `<test-case` element; its `fullname` attribute is the identifier
-- Its `result` attribute is `Passed`, `Failed`, `Inconclusive` or `Skipped`
-  (`docs/engine-reference/unity/current-best-practices.md`, "Command Line");
-  only `Passed` and `Failed` enter the history
 
 **Plain text logs**:
 - Grep for pass/fail patterns:
@@ -161,10 +147,6 @@ Skip mechanisms, by engine — name only the one for the project's engine:
   not in the `addons/gdUnit4/` source, and `docs/engine-reference/godot/` does not
   cover them. Log it in the quarantine section and ask the user how their C#
   tests are skipped; do not invent an attribute.
-- **Unity (NUnit)**: `[Ignore("flaky: [cause]")]` — NUnit 3 requires the reason
-- **Unreal**: **NOT SOURCEABLE** — `docs/engine-reference/unreal/` documents no way
-  to skip an automation test. Log it in the quarantine section and ask the user
-  how their CI excludes a test; do not invent a flag.
 
 **Investigate and fix soon (Moderate):**
 > "This test is intermittently unreliable. Root cause appears to be [cause].

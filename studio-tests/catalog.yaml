@@ -1043,40 +1043,30 @@ agents:
     category: engine
 
   # Engine Specialists — Unity
-  - name: unity-specialist
-    spec: studio-tests/agents/engine/unity/unity-specialist.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
     last_category_result: ""
     category: engine
 
-  - name: unity-ui-specialist
-    spec: studio-tests/agents/engine/unity/unity-ui-specialist.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
     last_category_result: ""
     category: engine
 
-  - name: unity-shader-specialist
-    spec: studio-tests/agents/engine/unity/unity-shader-specialist.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
     last_category_result: ""
     category: engine
 
-  - name: unity-dots-specialist
-    spec: studio-tests/agents/engine/unity/unity-dots-specialist.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
     last_category_result: ""
     category: engine
 
-  - name: unity-addressables-specialist
-    spec: studio-tests/agents/engine/unity/unity-addressables-specialist.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
@@ -1084,40 +1074,30 @@ agents:
     category: engine
 
   # Engine Specialists — Unreal
-  - name: unreal-specialist
-    spec: studio-tests/agents/engine/unreal/unreal-specialist.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
     last_category_result: ""
     category: engine
 
-  - name: ue-blueprint-specialist
-    spec: studio-tests/agents/engine/unreal/ue-blueprint-specialist.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
     last_category_result: ""
     category: engine
 
-  - name: ue-gas-specialist
-    spec: studio-tests/agents/engine/unreal/ue-gas-specialist.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
     last_category_result: ""
     category: engine
 
-  - name: ue-umg-specialist
-    spec: studio-tests/agents/engine/unreal/ue-umg-specialist.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""
     last_category_result: ""
     category: engine
 
-  - name: ue-replication-specialist
-    spec: studio-tests/agents/engine/unreal/ue-replication-specialist.md
     last_spec: ""
     last_spec_result: ""
     last_category: ""

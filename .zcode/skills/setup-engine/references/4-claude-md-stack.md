@@ -62,8 +62,6 @@ chosen engine. Find the line marked `ENGINE-REFERENCE-IMPORT` (a
 `Pinned engine version: read \`docs/engine-reference/<engine>/VERSION.md\`` line
 under its comment) and Edit it to point at the configured engine:
 - Godot → `docs/engine-reference/godot/VERSION.md`
-- Unity → `docs/engine-reference/unity/VERSION.md`
-- Unreal → `docs/engine-reference/unreal/VERSION.md`
 
 (ZCode does not expand `@path` imports in AGENTS.md, so the port replaced the
 Claude Code import line with this read-on-demand pointer.) It is idempotent —

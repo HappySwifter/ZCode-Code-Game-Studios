@@ -1944,8 +1944,8 @@ EOF
   if _rc_named specialists; then
     case "$(printf '%s' "$ev_name" | tr '[:upper:]' '[:lower:]')" in
       godot)   sp_primary="godot-specialist" ;;
-      unity)   sp_primary="unity-specialist" ;;
-      unreal*) sp_primary="unreal-specialist" ;;
+      # solo-dev edition: Godot only; any other value falls back to godot-specialist
+      *)       sp_primary="godot-specialist" ;;
       *)       sp_primary="" ;;
     esac
     sp_psrc="engine.name"

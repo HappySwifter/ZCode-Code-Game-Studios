@@ -2,9 +2,7 @@
 paths:
   - "**/*.tscn"
   - "**/*.tres"
-  - "**/*.unity"
-  - "**/*.prefab"
-  - "Assets/**/*.asset"
+
 ---
 
 # Scene and Asset File Rules
@@ -29,13 +27,3 @@ When you edit the text by hand:
 - After a hand edit, run `godot --headless --path . --import` and open or run
   the scene once to confirm it loads without errors.
 
-## Unity (`.unity`, `.prefab`, `.asset`)
-
-- Never hand-edit `.unity`, `.prefab` or `.asset` YAML while a Unity Editor is
-  reachable: open on this project, or reachable through its command-line or MCP
-  tools. The Editor holds its own copy, and its next save can overwrite or
-  conflict with the edit. Make the change through the Editor, or hand the user
-  the steps. If you cannot tell whether an Editor is reachable, treat it as reachable.
-- With no Editor reachable, keep every `fileID` and `guid` reference intact,
-  never invent a GUID, never edit or delete a `.meta` file, and open the scene
-  in the Editor afterwards to confirm it loads.

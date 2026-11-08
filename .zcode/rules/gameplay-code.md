@@ -1,8 +1,7 @@
 ---
 paths:
   - "src/gameplay/**"
-  - "Assets/**/{Gameplay,gameplay}/**/*.cs"
-  - "Source/**/{Gameplay,gameplay}/**/*.{h,cpp}"
+
 ---
 
 # Gameplay Code Rules
@@ -24,20 +23,6 @@ paths:
 ```gdscript
 var damage: float = config.get_value("combat", "base_damage", 10.0)
 var speed: float = stats_resource.movement_speed * delta
-```
-
-Unity (values from a ScriptableObject):
-
-```csharp
-float damage = combatConfig.BaseDamage;
-float speed = stats.MovementSpeed * Time.deltaTime;
-```
-
-Unreal (values from a data asset):
-
-```cpp
-const float Damage = CombatConfig->BaseDamage;
-const float Speed = Stats->MovementSpeed * DeltaTime;
 ```
 
 **Incorrect** (hardcoded):

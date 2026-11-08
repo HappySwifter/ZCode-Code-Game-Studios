@@ -24,20 +24,7 @@ engine-appropriate defaults. Read the existing template first, then fill in:
 
 **For Godot** — see `references/godot-language-config.md` (**A2**) for GDScript, C#, and Both variants.
 
-**For Unity (C#):**
-- Classes: PascalCase (e.g., `PlayerController`)
-- Public fields/properties: PascalCase (e.g., `MoveSpeed`)
-- Private fields: _camelCase (e.g., `_moveSpeed`)
-- Methods: PascalCase (e.g., `TakeDamage()`)
-- Files: PascalCase matching class (e.g., `PlayerController.cs`)
-- Constants: PascalCase or UPPER_SNAKE_CASE
 
-**For Unreal (C++):**
-- Classes: Prefixed PascalCase (`A` for Actor, `U` for UObject, `F` for struct)
-- Variables: PascalCase (e.g., `MoveSpeed`)
-- Functions: PascalCase (e.g., `TakeDamage()`)
-- Booleans: `b` prefix (e.g., `bIsAlive`)
-- Files: Match class without prefix (e.g., `PlayerController.h`)
 
 ### Input & Platform Section
 
@@ -93,8 +80,7 @@ Example filled section:
   - Prompt: "Should I set default performance budgets now, or leave them for later?"
   - Options: `[A] Set defaults now (60fps, 16.6ms frame budget, engine-appropriate draw call limit)` / `[B] Leave as [TO BE CONFIGURED] — I'll set these when I know my target hardware`
   - If [A]: populate with the suggested defaults. If [B]: leave as placeholder.
-- **Testing**: Suggest the engine-appropriate framework — **gdUnit4** for Godot,
-  NUnit for Unity, Automation Spec for Unreal — and ask before adding.
+- **Testing**: Suggest **gdUnit4** (this edition's framework) and ask before adding.
   > **Must match `commands.test` in Section 5.5.1, which writes gdUnit4's own
   > runner (`res://addons/gdUnit4/bin/GdUnitCmdTool.gd`), and
   > `.zcode/docs/coding-standards.md`, which names the same runner.** Naming GUT
@@ -111,56 +97,10 @@ Also populate the `## Engine Specialists` section in `technical-preferences.md` 
 
 **For Godot** — see `references/godot-language-config.md` (**A3**) for the routing table matching the language chosen.
 
-**For Unity:**
-```markdown
-## Engine Specialists
-- **Primary**: unity-specialist
-- **Language/Code Specialist**: unity-specialist (C# review — primary covers it)
-- **Shader Specialist**: unity-shader-specialist (Shader Graph, HLSL, URP/HDRP materials)
-- **UI Specialist**: unity-ui-specialist (UI Toolkit UXML/USS, UGUI Canvas, runtime UI)
-- **Additional Specialists**: unity-dots-specialist (ECS, Jobs system, Burst compiler), unity-addressables-specialist (asset loading, memory management, content catalogs)
-- **Routing Notes**: Invoke primary for architecture and general C# code review. Invoke DOTS specialist for any ECS/Jobs/Burst code. Invoke shader specialist for rendering and visual effects. Invoke UI specialist for all interface implementation. Invoke Addressables specialist for asset management systems.
-
-### File Extension Routing
-
-| File Extension / Type | Specialist to Spawn |
-|-----------------------|---------------------|
-| Game code (.cs files) | unity-specialist |
-| Shader / material files (.shader, .shadergraph, .mat) | unity-shader-specialist |
-| UI / screen files (.uxml, .uss, Canvas prefabs) | unity-ui-specialist |
-| Scene / prefab / level files (.unity, .prefab) | unity-specialist |
-| Native extension / plugin files (.dll, native plugins) | unity-specialist |
-| General architecture review | unity-specialist |
-```
-
-**For Unreal:**
-```markdown
-## Engine Specialists
-- **Primary**: unreal-specialist
-- **Language/Code Specialist**: ue-blueprint-specialist (Blueprint graphs) or unreal-specialist (C++)
-- **Shader Specialist**: unreal-specialist (no dedicated shader specialist — primary covers materials)
-- **UI Specialist**: ue-umg-specialist (UMG widgets, CommonUI, input routing, widget styling)
-- **Additional Specialists**: ue-gas-specialist (Gameplay Ability System, attributes, gameplay effects), ue-replication-specialist (property replication, RPCs, client prediction, netcode)
-- **Routing Notes**: Invoke primary for C++ architecture and broad engine decisions. Invoke Blueprint specialist for Blueprint graph architecture and BP/C++ boundary design. Invoke GAS specialist for all ability and attribute code. Invoke replication specialist for any multiplayer or networked systems. Invoke UMG specialist for all UI implementation.
-
-### File Extension Routing
-
-| File Extension / Type | Specialist to Spawn |
-|-----------------------|---------------------|
-| Game code (.cpp, .h files) | unreal-specialist |
-| Shader / material files (.usf, .ush, Material assets) | unreal-specialist |
-| UI / screen files (.umg, UMG Widget Blueprints) | ue-umg-specialist |
-| Scene / prefab / level files (.umap, .uasset) | unreal-specialist |
-| Native extension / plugin files (Plugin .uplugin, modules) | unreal-specialist |
-| Blueprint graphs (.uasset BP classes) | ue-blueprint-specialist |
-| General architecture review | unreal-specialist |
-```
-
+### Collaborative Step
 ### Collaborative Step
 Present the filled-in preferences to the user. For Godot, include the chosen language and note where the full naming conventions and routing tables live:
 > "Here are the default technical preferences for [engine] ([language if Godot]). The naming conventions and specialist routing are in this skill's references directory — I'll apply the [GDScript/C#/Both] variant. Want to customize any of these, or may I save them to `.zcode/docs/technical-preferences.md`?"
-
-For all other engines, present the defaults directly without referencing the appendix.
 
 Wait for approval before writing the file.
 

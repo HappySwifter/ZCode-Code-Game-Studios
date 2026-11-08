@@ -1,8 +1,7 @@
 ---
 paths:
   - "src/core/**"
-  - "Assets/**/{Core,core}/**/*.cs"
-  - "Source/**/{Core,core}/**/*.{h,cpp}"
+
 ---
 
 # Engine Code Rules
@@ -28,29 +27,6 @@ var _nearby_cache: Array[Node3D] = []
 func _physics_process(delta: float) -> void:
     _nearby_cache.clear()  # Reuse, don't reallocate
     _spatial_grid.query_radius(position, radius, _nearby_cache)
-```
-
-Unity:
-
-```csharp
-private readonly Collider[] _nearbyCache = new Collider[64];  // allocated once
-
-void FixedUpdate()
-{
-    int count = Physics.OverlapSphereNonAlloc(transform.position, radius, _nearbyCache);
-}
-```
-
-Unreal:
-
-```cpp
-// TArray member, reserved once; Reset() keeps the allocation
-void UProximityComponent::TickComponent(float DeltaTime, ELevelTick TickType,
-                                        FActorComponentTickFunction* ThisTickFunction)
-{
-    NearbyCache.Reset();
-    SpatialGrid->QueryRadius(GetComponentLocation(), Radius, NearbyCache);
-}
 ```
 
 **Incorrect** (allocating in hot path):

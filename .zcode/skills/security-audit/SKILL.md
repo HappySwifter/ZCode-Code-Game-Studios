@@ -145,30 +145,13 @@ Unreal project they match nothing, and a zero-hit scan renders the report clean,
 "the most dangerous possible failure for a security audit". Use the table for
 `engine.name` resolved in Phase 1.
 
-| Category | Godot | Unity | Unreal |
-|---|---|---|---|
-| 1 — Save / serialization | the Godot list below | **NOT SOURCEABLE** | **NOT SOURCEABLE** |
-| 2 — Network / multiplayer | the Godot list below | `ServerRpc`, `ClientRpc`, `NetworkVariable`, `NetworkObject`, `NetworkManager`, `NetworkBehaviour`, `IsServer`, `IsOwner` | `UFUNCTION`, `Server`, `Client`, `NetMulticast`, `Replicated`, `DOREPLIFETIME`, `GetLifetimeReplicatedProps`, `HasAuthority` |
-| 3 — Input | the Godot list below | `InputSystem`, `PlayerInput`, `ReadValue`, `InputValue` | `EnhancedInput`, `UInputAction`, `InputMappingContext`, `BindAction`, `FInputActionValue` |
-| 4 — Data exposure | engine-agnostic — the list below applies to all three | | |
-| 5, 6 | judgement and manifests, not greps — no engine set needed | | |
-
-The Unity and Unreal names above are **sourced from this repo's pinned
-references** (`docs/engine-reference/unity/modules/{networking,input}.md`,
-`docs/engine-reference/unreal/modules/{networking,input}.md`), not from recall.
-Verify them against the pin before use and add what the reference documents that
-this table omits — it is a floor, not a complete set.
-
-> **`NOT SOURCEABLE` is a verdict, not a gap to fill from memory.** Neither
-> reference tree carries a serialization/save module, so the save-API names for
-> Unity and Unreal cannot be confirmed here. **Do not write them from training
-> data.** A confidently wrong pattern list is worse in this skill than in any
-> other: it produces a scan that looks thorough, finds nothing, and reads as a
-> pass. Where the table says NOT SOURCEABLE, that category is **`NOT ASSESSED`**
-> for this engine — see Phase 5. To close it properly, add a save/serialization
-> module, sourced like the others, to `docs/engine-reference/<engine>/modules/`;
-> when one is there, take the category's pattern names from it, cite it in the
-> report, and the category runs.
+| Category | Godot |
+|---|---|
+| 1 — Save / serialization | the Godot list below |
+| 2 — Network / multiplayer | the Godot list below |
+| 3 — Input | the Godot list below |
+| 4 — Data exposure | engine-agnostic — the list below applies |
+| 5, 6 | judgement and manifests, not greps — no engine set needed |
 
 
 ### Category 1: Save File and Serialization Security

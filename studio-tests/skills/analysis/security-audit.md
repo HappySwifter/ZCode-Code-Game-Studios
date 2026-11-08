@@ -191,34 +191,7 @@ Fixture defaults.
 
 ---
 
-### Case 5: Unity Project in Full Review Mode — NOT SOURCEABLE category, no gates
-
-**Fixture:**
-- `project.yaml`: `engine.name: unity`, `engine.language: csharp`, `platform.multiplayer: true`, `platform.online: true`, `modes.review_mode: full`
-- `Assets/Scripts/Save/SaveManager.cs` reads and writes save data
-- `Assets/Scripts/Net/PlayerNet.cs` has `[ServerRpc]` methods that validate their inputs
-- No findings in the categories that can run
-
-**Input:** `/security-audit`
-
-**Expected behavior:**
-1. The manifest passed to `security-engineer` is rooted at `Assets/`, not `src/`
-2. Category 1 is `NOT SOURCEABLE` for Unity → `NOT ASSESSED`; no Unity save-API names are written from memory
-3. Categories 2 and 3 use the Unity names from the Phase 3 table (`ServerRpc`, `ClientRpc`, `NetworkVariable`, …; `InputSystem`, `PlayerInput`, …), not the Godot lists
-4. The Executive Summary names Category 1 as NOT ASSESSED; Release recommendation: `NOT ASSESSED — Save / serialization has no sourced pattern set for Unity`
-5. The Phase 7 NOT ASSESSED message names Category 1 as NOT SOURCEABLE on Unity and its fix — a save/serialization module in `docs/engine-reference/unity/modules/` — not `engine.name`, the code root or the multiplayer scope, which were all supplied
-6. No director gate is invoked regardless of review mode
-7. Skill asks "May I write" before writing the report
-
-**Assertions:**
-- [ ] The source manifest uses the Unity code root `Assets/`
-- [ ] Category 1 is NOT ASSESSED for Unity and no save-API pattern list is invented
-- [ ] Category 2 uses the Unity network names, not the Godot list
-- [ ] CLEAR TO SHIP is unreachable; the recommendation names the unsourced category
-- [ ] The NOT ASSESSED message points at a serialization module under `docs/engine-reference/unity/modules/` as the fix
-- [ ] No director gate is invoked in any review mode
-
----
+> *Case 5 of the upstream spec covered a Unity project with a NOT SOURCEABLE category; the solo-dev edition supports Godot only, whose Category 1 has a sourced pattern list, so that case no longer applies.*
 
 ### Case 5b: Ranking — An open HIGH outranks an unsourced category
 

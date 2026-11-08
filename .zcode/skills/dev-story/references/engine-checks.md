@@ -26,7 +26,7 @@ Failed`, non-zero exit).
 - macOS: `"<UE root>/Engine/Build/BatchFiles/Mac/Build.sh" <Project>Editor Mac Development -Project=…`
 
 The commands are from Epic's documentation, as recorded in
-`docs/engine-reference/unreal/current-best-practices.md` ("Command Line").
+Epic's documentation.
 
 **Capture:** launch straight into the map the story touched, as
 `run-and-observe.md` gives it.

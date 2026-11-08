@@ -145,8 +145,7 @@ MSYS_NO_PATHCONV=1 timeout 60 "<UE root>/Engine/Binaries/Win64/UnrealEditor.exe"
 That line is Windows'. On Linux the same arguments go to
 `"<UE root>/Engine/Binaries/Linux/UnrealEditor"` (no `MSYS_NO_PATHCONV` needed);
 on macOS Epic documents only the `UnrealEditor.app` bundle, so run the map from
-the editor or a command you have confirmed (see
-`docs/engine-reference/unreal/current-best-practices.md`, "Command Line").
+the editor or a command you have confirmed (see Epic's documentation).
 
 `-game` runs standalone without the editor UI. The map is a **positional URL
 immediately after the `.uproject`** — not a console command. **The

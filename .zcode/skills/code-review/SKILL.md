@@ -52,7 +52,7 @@ Read the target file(s) in full. Read AGENTS.md for project coding standards.
 
 Read the `specialists` block from `project.yaml`; if it is absent, fall back to the `## Engine Specialists` section of `.zcode/docs/technical-preferences.md`. Note:
 
-- The **Primary** specialist — `<engine>-specialist` derived from `engine.name` (Godot→`godot-specialist`, Unity→`unity-specialist`, Unreal→`unreal-specialist`); used for architecture and broad engine concerns
+- The **Primary** specialist — `godot-specialist` (the edition's engine); used for architecture and broad engine concerns
 - The **Language/Code Specialist** — `specialists.code` — used when reviewing the project's primary language files
 - The **Shader Specialist** — `specialists.shader` — used when reviewing shader files
 - The **UI Specialist** — `specialists.ui` — used when reviewing UI code

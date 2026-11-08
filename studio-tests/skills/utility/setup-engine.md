@@ -94,65 +94,7 @@ Fixture defaults.
 
 ---
 
-### Case 2: Unity + C# — Unity-specific configuration
-
-**Fixture:**
-- Placeholders only in `technical-preferences.md`; no `engine` block in `project.yaml`
-- The user supplies the version and the build target when asked
-
-**Input:** `/setup-engine unity`
-
-**Expected behavior:**
-1. Engine-only mode: version looked up and confirmed with the user
-2. No language question (Unity is C#); AGENTS.md Language is `C#`
-3. Naming: PascalCase classes/methods, `_camelCase` private fields
-4. Routing: `.cs` → unity-specialist, `.shader`/`.shadergraph` → unity-shader-specialist,
-   `.unity`/`.prefab` → unity-specialist, `.uxml`/`.uss` → unity-ui-specialist
-5. `rendering: URP`, `physics: PhysX` written directly — no shape question
-6. `commands.build` target is asked (no hardcoded `StandaloneLinux64`);
-   `naming.constants` carries the `# UNVERIFIED` comment
-7. No Unity project is scaffolded; the user is told to create it in Unity Hub
-
-**Assertions:**
-- [ ] Engine field is set to Unity and Language to C#
-- [ ] Naming conventions reflect C# conventions
-- [ ] Routing table includes `.cs` and `.unity` entries
-- [ ] No project-shape question is asked for Unity
-- [ ] No Unity project files are written
-- [ ] Verdict is COMPLETE
-
----
-
-### Case 3: Unreal — C++ primary, Blueprint routed to its specialist
-
-**Fixture:**
-- Placeholders only; the user never states that the project is Blueprint-primary
-- The session runs on Windows (`uname -s` is neither `Linux` nor `Darwin`), so the Windows `commands` block applies
-
-**Input:** `/setup-engine unreal 5.8`
-
-**Expected behavior:**
-1. The primary-language question defaults to C++, so AGENTS.md Language reads
-   `C++ (primary), Blueprint (gameplay prototyping)` — the line follows the
-   answer, and a Blueprint-primary answer would write
-   `Blueprint (primary), C++ where needed`
-2. `project.yaml` gets `engine.language: "C++"` (Blueprint only when the project is Blueprint-primary)
-3. Routing: `.uasset` BP classes → ue-blueprint-specialist; `.umap`/`.uasset` → unreal-specialist;
-   `specialists.additional` includes ue-blueprint-specialist
-4. `commands` are written as single-quoted scalars under a
-   `# TODO: confirm these` comment; `engine.path` is recorded
-5. Performance budgets are asked via `AskUserQuestion` (set defaults / leave
-   `[TO BE CONFIGURED]`), not pre-filled
-6. No `.uproject` is scaffolded; verdict COMPLETE
-
-**Assertions:**
-- [ ] Engine field is set to Unreal Engine 5.8 and `engine.language` is `C++`
-- [ ] Routing table includes `.uasset` and `.umap` entries
-- [ ] ue-blueprint-specialist is assigned for Blueprint graphs
-- [ ] `commands` carry the `# TODO: confirm these` comment
-- [ ] Verdict is COMPLETE
-
----
+> *Cases 2 and 3 of the upstream spec covered Unity and Unreal engine-only configuration; the solo-dev edition supports Godot only, so those cases no longer apply.*
 
 ### Case 4: Re-run on a Configured Project — blocks edited in place
 

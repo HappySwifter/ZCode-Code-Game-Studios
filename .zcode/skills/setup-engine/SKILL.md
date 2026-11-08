@@ -1,6 +1,6 @@
 ---
 name: setup-engine
-description: "Configure engine and version. Pins it in AGENTS.md; WebSearch fills reference docs when the version is beyond LLM training data. Arguments: [engine] | [engine version] | refresh | upgrade [old-version] [new-version] | no args for guided selection."
+description: "Configure the Godot engine and version. Pins it in AGENTS.md; WebSearch fills reference docs when the version is beyond LLM training data. Arguments: [version] | refresh | upgrade [old-version] [new-version] | no args for guided selection. The solo-dev edition supports Godot only."
 ---
 
 # Engine Setup
@@ -25,7 +25,7 @@ If the block did not render (shell preprocessing disabled), assume `minimal` (th
 Four modes:
 
 - **Full spec**: `/setup-engine godot 4.7` — engine and version provided
-- **Engine only**: `/setup-engine unity` — engine provided, version will be looked up
+- **Version only**: `/setup-engine 4.7` — version provided, engine is Godot
 - **No args**: `/setup-engine` — fully guided mode (engine recommendation + version)
 - **Refresh**: `/setup-engine refresh` — update reference docs (see Section 10)
 - **Upgrade**: `/setup-engine upgrade [old-version] [new-version]` — migrate to a new engine version (see Section 11)

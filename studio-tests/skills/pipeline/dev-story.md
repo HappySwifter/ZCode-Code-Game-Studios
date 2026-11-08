@@ -308,35 +308,33 @@ The `full` column of the file-check table has its own STOP rule, so the
 
 ---
 
-### Case 6: Unity — code under `Assets/`, capture script asked for
+### Case 6: Godot — capture script asked for
 
 **Fixture:**
-- `project.yaml`: `engine.name: Unity`, `specialists.code: unity-specialist`,
-  `specialists.ui: unity-ui-specialist`, `commands.smoke` and `commands.run` set,
+- `project.yaml`: `engine.name: Godot`, `specialists.code: godot-specialist`,
+  `commands.smoke` and `commands.run` set,
   `modes.workflow: minimal`, `qa.level: minimal`
 - Story Type UI (an inventory screen) with `Requirement: Brief MVP feature 3` and
   ADR fields `N/A (minimal — no ADRs)`
-- The project has `Assets/` and no `src/`; no `ScreenshotOnArg.cs` exists under `Assets/`
-- `docs/engine-reference/unity/VERSION.md` rates the pinned version HIGH risk
+- No `ScreenshotOnArg.gd` exists under `src/`
+- `docs/engine-reference/godot/VERSION.md` rates the pinned version HIGH risk
 
 **Input:** `/dev-story production/epics/[slug]/story-003-[slug].md`
 
 **Expected behavior:**
-1. Spawns `ui-programmer` with `unity-specialist` (`specialists.code`) and
-   `unity-ui-specialist` (`specialists.ui`, for a UI story)
-2. The brief sends the code to `Assets/Scripts/<System>/`, the Unity code root
+1. Spawns `ui-programmer` with `godot-specialist` (`specialists.code`)
+2. The brief sends the code to `src/<System>/`, the Godot code root
 3. Verification runs `commands.smoke` and reports its exit code
-4. Before launching, globs `Assets/**/ScreenshotOnArg.cs`, finds none and asks
-   "May I write `Assets/Scripts/ScreenshotOnArg.cs`?"; on yes writes the script
+4. Before launching, searches for `ScreenshotOnArg.gd` under `src/`, finds none and asks
+   "May I write `src/ScreenshotOnArg.gd`?"; on yes writes the script
    verbatim from `.zcode/docs/run-and-observe.md`
-5. Launches the built player with `--scene`/`--screenshot` and prints
+5. Launches the scene with the capture script and prints
    `Run result: OBSERVED — …` with the retained path
 
 **Assertions:**
-- [ ] No file is written under `src/` — the Godot row is not a default
-- [ ] Both specialists come from the `specialists` block, not the roster table
-- [ ] `ScreenshotOnArg.cs` is written only after its ask, at `Assets/Scripts/`, exactly as run-and-observe.md gives it
-- [ ] If the user declines that ask, the result is `Run result: NOT VERIFIED — ScreenshotOnArg.cs not written`, not an observation
+- [ ] The specialist comes from the `specialists` block, not the roster table
+- [ ] `ScreenshotOnArg.gd` is written only after its ask, at `src/`, exactly as run-and-observe.md gives it
+- [ ] If the user declines that ask, the result is `Run result: NOT VERIFIED — ScreenshotOnArg.gd not written`, not an observation
 - [ ] Verification names `commands.smoke` and its exit code
 
 ---

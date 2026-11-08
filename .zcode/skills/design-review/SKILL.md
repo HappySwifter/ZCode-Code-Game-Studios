@@ -230,7 +230,7 @@ Using the GDD **already loaded in Phase 1** — do not re-read it — identify e
 | Animation, feel, timing, juice | `gameplay-programmer` |
 | Audio cues, music triggers | `audio-director` |
 | Performance, draw calls, memory | `performance-analyst` |
-| Engine-specific patterns or APIs | Primary engine specialist (`<engine>-specialist` from `engine.name` — Godot→`godot-specialist`, Unity→`unity-specialist`, Unreal→`unreal-specialist`; fall back to the Primary line of `## Engine Specialists` in `technical-preferences.md`) |
+| Engine-specific patterns or APIs | Primary engine specialist (`godot-specialist` (the edition's engine specialist); fall back to the Primary line of `## Engine Specialists` in `technical-preferences.md`) |
 | Acceptance criteria, test coverage | `qa-lead` |
 | Data schema, resource structure | `systems-designer` |
 | Any gameplay system | `game-designer` (always) |

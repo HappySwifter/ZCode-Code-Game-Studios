@@ -110,8 +110,7 @@ nothing changed; a failed build is a FAIL.
 **Pick the commands for this machine** with `uname -s`: `Linux` → Linux,
 `Darwin` → macOS, anything else (`MINGW*`, `MSYS*`, `CYGWIN*`) → Windows. The
 Windows forms below were run on UE 5.7; the Linux and macOS forms come from
-Epic's documentation — `docs/engine-reference/unreal/current-best-practices.md`,
-"Command Line", has them with their sources. On Windows use
+Epic's documentation, which has them with their sources. On Windows use
 `UnrealBuildTool.exe`, not `Build.bat`: run from bash, `Build.bat` fails on an
 engine path with spaces.
 ```bash

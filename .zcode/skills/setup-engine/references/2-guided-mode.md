@@ -36,22 +36,20 @@ mode) and Read those ranges with offset and limit:
 ### If the user wants to pick without a concept, ask in this order:
 
 **Question 1 — Prior experience** (ask this first, always, via `AskUserQuestion`):
-- Prompt: "Have you worked in any of these engines before?"
-- Options: `Godot` / `Unity` / `Unreal Engine 5` / `Multiple — I'll explain` / `None of them`
-- If they pick a specific engine → recommend that engine. Prior experience outweighs all other factors. Confirm with them and skip the matrix.
-- If "None" or "Multiple" → continue to the questions below.
+- Prompt: "Have you worked in Godot before?"
+- Options: `Yes, Godot` / `Another engine (Unity, Unreal, ...)` / `No engine yet`
+- The solo-dev edition supports Godot only: whatever the answer, recommend Godot and continue to the version question. Prior engine experience only shapes how much hand-holding the setup gives.
 
 **Questions 2-6 — Decision matrix inputs** (only if no prior engine experience):
 
 **Question 2 — Target platform** (ask this second, always, via `AskUserQuestion` — platform eliminates or heavily weights engines before any other factor):
 - Prompt: "What platforms are you targeting for this game?"
 - Options: `PC (Steam / Epic)` / `Mobile (iOS / Android)` / `Console` / `Web / Browser` / `Multiple platforms`
-- Platform rules that feed directly into the recommendation:
-  - Mobile → Unity strongly preferred; Unreal is a poor fit; Godot is viable for simple mobile
-  - Console → Unity or Unreal; Godot console support requires third-party publishers or significant extra work
-  - Web → Godot exports cleanly to web; Unity WebGL is functional; Unreal has poor web support
-  - PC only → all engines viable; other factors decide
-  - Multiple → Unity is the most portable across PC/mobile/console
+- Platform rules that feed directly into the recommendation (Godot only in this edition):
+  - Mobile → viable for simple mobile games
+  - Console → requires third-party publishers or significant extra work
+  - Web → Godot exports cleanly to web
+  - PC only → the main target; all Godot features available
 
 1. **What kind of game?** (2D, 3D, or both?)
 2. **Primary input method?** (keyboard/mouse, gamepad, touch, or mixed?)

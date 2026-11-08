@@ -109,18 +109,19 @@ Fixture defaults.
 
 ---
 
-### Case 3: Narrow Focus on Unreal — 4-hour memory soak
+### Case 3: Narrow Focus on Godot — 4-hour memory soak
 
 **Fixture:**
-- `project.yaml` has `engine.name: Unreal`
+- `project.yaml` has `engine.name: Godot`
 
 **Input:** `/soak-test 4h memory`
 
 **Expected behavior:**
 1. Checkpoints for `4h`: T+0, T+30, T+60, T+90, T+120, T+180, T+240
-2. Unreal memory items: a memory readout at each checkpoint — `stat memory`,
-   marked NOT SOURCEABLE since `docs/engine-reference/unreal/` does not cover
-   it; record Physical Memory Used and Available (units as displayed)
+2. Godot memory items: a memory readout at each checkpoint, marked
+   NOT SOURCEABLE since `docs/engine-reference/godot/` does not cover a
+   console memory command; record Physical Memory Used and Available (units
+   as displayed)
 3. Alert threshold: Physical Memory Used growth > 20% over the full soak,
    against this run's T+0 — no absolute MB threshold
 4. Balance/fatigue observation items are not generated (focus is `memory`)
@@ -128,8 +129,8 @@ Fixture defaults.
 
 **Assertions:**
 - [ ] Checkpoints are exactly T+0, T+30, T+60, T+90, T+120, T+180, T+240
-- [ ] The Unreal threshold is a relative > 20% growth, not an absolute size
-- [ ] `stat memory` is marked NOT SOURCEABLE, a pointer to confirm rather than a verified command
+- [ ] The Godot threshold is a relative > 20% growth, not an absolute size
+- [ ] The memory readout is marked NOT SOURCEABLE, a pointer to confirm rather than a verified command
 - [ ] Balance/fatigue items are omitted for focus `memory`
 - [ ] "May I write" names the `-4h.md` path
 
@@ -138,7 +139,7 @@ Fixture defaults.
 ### Case 4: No Performance Budgets — "not set", never invented
 
 **Fixture:**
-- `project.yaml` has `engine.name: Unity` and no `performance` block
+- `project.yaml` has `engine.name: Godot` and no `performance` block
 - `technical-preferences.md` Performance Budgets are `[TO BE CONFIGURED]`
 
 **Input:** `/soak-test 30m memory`
@@ -148,8 +149,8 @@ Fixture defaults.
 2. Budget notes read `Memory ceiling: not set`, `Target FPS: not set`,
    `Frame budget: not set` — no number is supplied in their place
 3. Checkpoints: T+0, T+10, T+20, T+30
-4. Unity memory items: a memory profiler, marked NOT SOURCEABLE (not covered by
-   `docs/engine-reference/unity/`); record Total Reserved Memory, GC Allocated,
+4. Godot memory items: a memory profiler, marked NOT SOURCEABLE (not covered by
+   `docs/engine-reference/godot/`); record Total Reserved Memory, GC Allocated,
    Object Count (units as displayed); alert when GC Allocated grows
    monotonically across 3+ checkpoints
 5. Skill asks "May I write" before writing `production/qa/soak-test-[date]-30m.md`

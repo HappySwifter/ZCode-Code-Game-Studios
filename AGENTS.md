@@ -1,6 +1,6 @@
 # ZCode Game Studios — Game Studio Agent Architecture
 
-Indie game development managed through 44 coordinated ZCode subagents.
+Indie game development managed through 34 coordinated ZCode subagents (the solo-dev, Godot-only edition of CCGS).
 Each agent owns a specific domain, enforcing separation of concerns and quality.
 
 > Ported from [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios)
@@ -11,14 +11,14 @@ Each agent owns a specific domain, enforcing separation of concerns and quality.
 
 ## Technology Stack
 
-- **Engine**: [CHOOSE: Godot 4 / Unity / Unreal Engine 5]
-- **Language**: [CHOOSE: GDScript / C# / C++ / Blueprint]
+- **Engine**: [CONFIRM: Godot 4 — version in docs/engine-reference/godot/VERSION.md]
+- **Language**: [CHOOSE: GDScript / C#]
 - **Version Control**: Git with trunk-based development
-- **Build System**: [SPECIFY after choosing engine]
-- **Asset Pipeline**: [SPECIFY after choosing engine]
+- **Build System**: [SPECIFY: Godot export presets / CLI]
+- **Asset Pipeline**: [SPECIFY: Godot import system]
 
-> **Note**: Engine-specialist agents exist for Godot, Unity, and Unreal with
-> dedicated sub-specialists. Use the set matching your engine.
+> **Note**: The solo-dev edition ships Godot specialist agents only
+> (GDScript, Shaders, GDExtension, C#).
 
 ## Project Structure
 
@@ -41,31 +41,13 @@ Each agent owns a specific domain, enforcing separation of concerns and quality.
 └── studio-tests/                # QA for the skills/agents themselves — /skill-test, /skill-improve
 ```
 
-### The code root is engine-specific
+### The code root
 
-**Two of the three supported engines will not build a project whose code sits in
-`src/`.** This is not a style preference — it is a hard constraint of the
-engine's own toolchain:
-
-| `engine.name` | Code root | Why it cannot be `src/` |
-|---|---|---|
-| **Godot** | `src/` | No constraint — Godot loads from `res://` anywhere under the project root. |
-| **Unity** | `Assets/` | Unity compiles **only** `Assets/` and `Packages/`. Code outside them is invisible to the compiler. |
-| **Unreal** | `Source/<Module>/` | UnrealBuildTool discovers modules under `Source/`; content lives in `Content/`. A module elsewhere is not built. |
-
-**Resolve the code root from `engine.name` before writing any source file.** A
-path shown as `src/…` alone is a Godot example: read it as *"the code root"* and
-substitute the row above. `src/` is the table's Godot row, not a universal path.
-
-**Tests follow the same rule** — the same compilers decide what they see:
-
-| `engine.name` | Test root | Anywhere else |
-|---|---|---|
-| **Godot** | `tests/unit/`, `tests/integration/` | — |
-| **Unity** | `Assets/Tests/EditMode/`, `Assets/Tests/PlayMode/` | not compiled: "0 tests, Passed" |
-| **Unreal** | `Source/<Module>/Private/Tests/` | not built: "No automation tests matched" |
-
-Read `tests/unit/[system]/` (or `integration/`) anywhere as the test root plus `[System]/`.
+The solo-dev edition supports Godot: the code root is `src/` (Godot loads from
+`res://` anywhere under the project root) and tests live in `tests/unit/` and
+`tests/integration/`. Read `tests/unit/[system]/` (or `integration/`) anywhere
+as `tests/unit/` plus `[System]/`. (The upstream template also mapped Unity's
+`Assets/` and Unreal's `Source/<Module>/` roots.)
 
 ## Engine Version Reference
 

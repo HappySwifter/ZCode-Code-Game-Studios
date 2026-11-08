@@ -3,7 +3,7 @@
   <p align="center">
     Turn a single ZCode session into a full game development studio.
     <br />
-    44 agents. 72 skills. One coordinated AI team.
+    34 agents. 72 skills. One coordinated AI team.
   </p>
   <p align="center">
     A ZCode port of <a href="https://github.com/Donchitos/Claude-Code-Game-Studios">Claude Code Game Studios</a> — same studio, rewired for ZCode.
@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-  <a href=".zcode/agents"><img src="https://img.shields.io/badge/agents-44-blueviolet" alt="44 Agents"></a>
+  <a href=".zcode/agents"><img src="https://img.shields.io/badge/agents-34-blueviolet" alt="34 Agents"></a>
   <a href=".zcode/skills"><img src="https://img.shields.io/badge/skills-72-green" alt="72 Skills"></a>
   <a href=".zcode/hooks"><img src="https://img.shields.io/badge/hooks-15-orange" alt="15 Hooks"></a>
   <a href=".zcode/rules"><img src="https://img.shields.io/badge/rules-14-red" alt="14 Rules"></a>
@@ -57,7 +57,7 @@ The result: you still make every decision, but now you have a team that asks the
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| **Agents** | 44 | Specialized subagents across design, programming, art, audio, narrative, QA, and production |
+| **Agents** | 34 | Specialized subagents across design, programming, art, audio, narrative, QA, and production |
 | **Skills** | 72 | Slash commands for every workflow phase (`/start`, `/design-system`, `/create-epics`, `/create-stories`, `/dev-story`, `/story-done`, etc.) |
 | **Hooks** | 15 | Automated validation on commits, pushes, asset changes, design-doc reads, writes and registries, session lifecycle, agent audit trail, and gap detection |
 | **Rules** | 14 | Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code, scene and asset files, and more |
@@ -93,13 +93,12 @@ accepts `model:` and `thoughtLevel:` — see `.zcode/docs/model-tiers.md`.
 
 ### Engine Specialists
 
-The template includes agent sets for all three major engines. Use the set that matches your project:
+The solo-dev edition ships the Godot agent set only (the upstream template also
+carried Unity and Unreal sets):
 
 | Engine | Lead Agent | Sub-Specialists |
 |--------|-----------|-----------------|
-| **Godot 4** | `godot-specialist` | GDScript, Shaders, GDExtension |
-| **Unity** | `unity-specialist` | DOTS/ECS, Shaders/VFX, Addressables, UI Toolkit |
-| **Unreal Engine 5** | `unreal-specialist` | GAS, Blueprints, Replication, UMG/CommonUI |
+| **Godot 4** | `godot-specialist` | GDScript, Shaders, GDExtension, C# |
 
 ## Slash Commands
 
@@ -272,9 +271,7 @@ AGENTS.md                           # Master configuration
   docs/
     workflow-catalog.yaml           # 7-phase pipeline definition (read by /help)
     templates/                      # 62 document templates (+ per-section guidance)
-src/                                # Game source code (Godot). The code root is
-                                    #   ENGINE-SPECIFIC: Unity compiles only
-                                    #   Assets/, Unreal builds from Source/<Module>/
+src/                                # Game source code (Godot code root)
 assets/                             # Art, audio, VFX, shaders, data files
 design/                             # GDDs, narrative docs, level designs
 docs/                               # Technical documentation and ADRs
@@ -289,7 +286,7 @@ studio-tests/                       # QA for the skills and agents themselves �
 
 CCGS is a template you are meant to edit. `studio-tests/` is how
 you check that an edited or newly written skill still holds up — a catalog of all
-72 skills and 44 agents, per-category quality rubrics, behavioral specs, and
+72 skills and 34 agents, per-category quality rubrics, behavioral specs, and
 templates for writing specs of your own.
 
 ```
@@ -368,11 +365,8 @@ hook that matches `tool_input.file_path` against each rule's `paths:` globs and
 injects the most specific match into the model's context (a table mapping every
 path to its rule file also lives in `AGENTS.md`, for when the hook is disabled).
 
-The paths below are Godot's. Each rule also matches the Unity and Unreal layouts: the code
-rules match C# under `Assets/**/Gameplay/` and C++ under `Source/**/Gameplay/` (and `Core`,
-`AI`, `Networking`, `UI`), data matches JSON under `Assets/**/Data/` and
-`Content/**/Data/`, shaders match by file type, and tests match
-C# under `Assets/Tests/` and C++ under `Source/**/Tests/`.
+The paths below are Godot's (the solo-dev edition ships Godot paths only;
+the upstream template also carried Unity `Assets/**` and Unreal `Source/**` globs).
 
 | Path | Enforces |
 |------|----------|
@@ -408,7 +402,7 @@ This is a **template**, not a locked framework. Everything is meant to be custom
 - **Modify skills** — adjust workflows to match your team's process
 - **Add rules** — create new path-scoped rules for your project's directory structure
 - **Tune hooks** — adjust validation strictness, add new checks
-- **Pick your engine** — use the Godot, Unity, or Unreal agent set (or none)
+- **Pick your engine** — the solo-dev edition ships the Godot set (the upstream template also has Unity/Unreal sets)
 - **Tune process weight** — `modes.rigor` and its underlying knobs in `project.yaml` (see [Configuration](#configuration)). Override per-run with `--review solo` on any skill.
 
 ## Platform Support
