@@ -23,6 +23,24 @@
 
 ---
 
+## Solo-dev Edition
+
+This branch is the **solo-dev, Godot-only edition**: the ZCode port trimmed to
+what a solo developer building a Godot game actually uses. Two layers, one
+commit each, both easy to cherry-pick back out:
+
+| Layer | Removed | Kept |
+|---|---|---|
+| Solo-dev cutdown | 5 agents (live-ops, localization, community, network, analytics) + `/localize`, `/team-live-ops` | the whole studio core: 34 agents, 72 skills, all 14 rules, every gate |
+| Godot-only | 10 Unity/Unreal specialist agents, their `docs/engine-reference/` sets, Unity/Unreal rule globs and CI sections | full Godot set: `godot-specialist` + 4 sub-specialists, `docs/engine-reference/godot/` |
+
+Everything else — the ZCode port wiring, hooks, `project.yaml` modes, the
+collaboration protocol — is identical to `main`. See the two commits on this
+branch (`ccecc38`, `3881fd8`) for the exact file lists; `MIGRATION.md` still
+documents the upstream → ZCode mapping for `main`.
+
+---
+
 ## Why This Exists
 
 Building a game solo with AI is powerful — but a single chat session has no structure. No one stops you from hardcoding magic numbers, skipping design docs, or writing spaghetti code. There's no QA pass, no design review, no one asking "does this actually fit the game's vision?"
